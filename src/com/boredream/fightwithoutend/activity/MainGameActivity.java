@@ -32,6 +32,8 @@ import com.boredream.fightwithoutend.domain.Hero;
 import com.boredream.fightwithoutend.domain.Monster;
 import com.boredream.fightwithoutend.domain.Skill;
 import com.boredream.fightwithoutend.domain.Treasure;
+import com.boredream.fightwithoutend.random.Event;
+import com.boredream.fightwithoutend.random.RandomEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,6 +107,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private GameThread gameThread;
 
     private FightOneturnData runOneTurn = null;
+    private Event event = null;
     private int oneTurnIndex = 0;
 
     private Handler handler = new Handler() {
@@ -124,7 +127,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                      mainInfoPlatform.addView(metMonInfo);
 
                      runOneTurn = FightDataInfoController.runOneTurn(monster);
-
+                     event = RandomEvent.getEvent();
                      isOneTurnFinghting = true;
 
                  } else {
@@ -135,7 +138,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                          FightOneKickData fightOneKickData = runOneTurn.oneKickData
                                  .get(oneTurnIndex);
                          // 将一次击打信息数据显示到页面中
-                         oneKickInfo.setText(fightOneKickData.getDescribe());
+                         oneKickInfo.setText(event.getDesc());
                          Log.i(TAG, fightOneKickData.getDescribe());
                          mainInfoPlatform.addView(oneKickInfo);
                          if (FightOneKickData.M2H == fightOneKickData.getHarmType()) {
