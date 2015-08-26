@@ -1,11 +1,9 @@
-
 package com.boredream.fightwithoutend.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,18 +23,15 @@ import android.widget.TextView;
 
 import com.boredream.fightwithoutend.R;
 import com.boredream.fightwithoutend.controller.FightDataInfoController;
-import com.boredream.fightwithoutend.controller.ProbabilityEventController;
-import com.boredream.fightwithoutend.domain.FightOneKickData;
-import com.boredream.fightwithoutend.domain.FightOneturnData;
 import com.boredream.fightwithoutend.domain.Hero;
 import com.boredream.fightwithoutend.domain.Monster;
 import com.boredream.fightwithoutend.domain.Skill;
 import com.boredream.fightwithoutend.domain.Treasure;
-import com.boredream.fightwithoutend.random.Event;
-import com.boredream.fightwithoutend.random.RandomEvent;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.gavin.Maze;
 
 public class MainGameActivity extends Activity implements OnClickListener, OnItemClickListener {
     private static final String TAG = "MainGameActivity";
@@ -52,7 +47,8 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
 
     // 英雄
     private Hero hero;
-
+    private cn.gavin.Hero heroN;
+    private Maze maze;
     // 根信息栏
     private TextView rootItemBarCharacter; // 按钮-人物
     private TextView rootItemBarOther; // 按钮-其他
@@ -68,9 +64,10 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private TextView mainContriHp;
     private TextView mainContriAtt;
     private TextView mainContriDef;
-    private TextView mainContriLv;
+    private TextView swordLev;
+    private TextView armorLev;
     private TextView mainContriNdExp;
-    private TextView mainContriCurExp;
+    private TextView mainContriCurMaterial;
     private TextView mainContriSp;
 
     private LinearLayout itemEquip; // 主体内容-装备
@@ -106,93 +103,71 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
 
     private GameThread gameThread;
 
-    private FightOneturnData runOneTurn = null;
-    private Event event = null;
     private int oneTurnIndex = 0;
-
+    private List<String> message;
     private Handler handler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
-
+            refresh();
             switch (msg.what) {
                 case 10:
-                 if (!isOneTurnFinghting) {
-                     monster = getMonster();
+                    if (!isOneTurnFinghting) {
+                        //monster = getMonster();
 
-                     TextView metMonInfo = new TextView(MainGameActivity.this);
-                     metMonInfo.setTextSize(fightInfoSize);
-                     metMonInfo.setText("你遇到了 " + monster.getName());
-                     Log.i(TAG, "你遇到了:" + monster.getName());
-                     mainInfoPlatform.addView(metMonInfo);
+                        TextView metMonInfo = new TextView(MainGameActivity.this);
+                        metMonInfo.setTextSize(fightInfoSize);
+                        metMonInfo.setText("你到达了迷宫： " + maze.getLev());
+                        Log.i(TAG, "你到达了迷宫： " + maze.getLev());
+                        mainInfoPlatform.addView(metMonInfo);
+                        message = maze.move();
+//                        runOneTurn = FightDataInfoController.runOneTurn(monster);
 
-                     runOneTurn = FightDataInfoController.runOneTurn(monster);
-                     event = RandomEvent.getEvent();
-                     isOneTurnFinghting = true;
+                        isOneTurnFinghting = true;
 
-                 } else {
-                     // 如果一轮战斗信息没有显示完(一轮战斗尚未结束)
-                     if (oneTurnIndex < runOneTurn.oneKickData.size()) {
-                         TextView oneKickInfo = new TextView(MainGameActivity.this);
-                         // 获取本轮战斗的一次击打信息
-                         FightOneKickData fightOneKickData = runOneTurn.oneKickData
-                                 .get(oneTurnIndex);
-                         // 将一次击打信息数据显示到页面中
-                         oneKickInfo.setText(event.getDesc());
-                         Log.i(TAG, fightOneKickData.getDescribe());
-                         mainInfoPlatform.addView(oneKickInfo);
-                         if (FightOneKickData.M2H == fightOneKickData.getHarmType()) {
-                             mainContriHp.setText(fightOneKickData.getHeroCurrentHp() + "");
-                         }
-                         // 遍历到下一次击打
-                         oneTurnIndex++;
-                     } else {
-                         // 一轮战斗结束了
-                         isOneTurnFinghting = false;
-                         Log.i(TAG, "战斗结束  isOneTurnFinghting=" + isOneTurnFinghting);
-                         oneTurnIndex = 0;
-                         mainContriHp.setText(Hero.MAX_HP + "");
-                         mainContriCurExp.setText(hero.exp + "");
-                         mainContriNdExp.setText(hero.currentLevelNeedExp() + "");
-                         mainContriLv.setText(hero.level + "");
-                         // 掉落装备,只有英雄胜利时才会触发
-                         if (runOneTurn.getFightOutcome() == FightOneturnData.FIGHT_OUTCOME_HERO_IS_WIN) {
-                             TextView dropTreasureInfo = new TextView(MainGameActivity.this);
-                             List<Treasure> dropTreasures = runOneTurn.getDropTreasures();
-                             StringBuilder sb = new StringBuilder();
-                             for (int i = 0; i < dropTreasures.size(); i++) {
-                                 if (i != 0) {
-                                     sb.append("\n");
-                                 }
-                                 sb.append("获得:" + dropTreasures.get(i).getName() + ";");
-                                 hero.totalObtainTreasure.add(dropTreasures.get(i));
-                             }
-                             dropTreasureInfo.setText(sb.toString());
-                             dropTreasureInfo.setTextColor(Color.RED);
-                             mainInfoPlatform.addView(dropTreasureInfo);
-                         }
-                         TextView fightEndSeparatorInfo = new TextView(MainGameActivity.this);
-                         fightEndSeparatorInfo.setText("--------------------");
-                         mainInfoPlatform.addView(fightEndSeparatorInfo);
-                     }
-                 }
-                 if (mainInfoPlatform.getChildCount() > fightInfoTotalCount) {
-                     mainInfoPlatform.removeViewAt(0);
-                 }
+                    } else {
+                        // 如果一轮战斗信息没有显示完(一轮战斗尚未结束)
+                        if (oneTurnIndex < message.size()) {
+                            TextView oneKickInfo = new TextView(MainGameActivity.this);
+                            // 获取本轮战斗的一次击打信息
+//                            FightOneKickData fightOneKickData = runOneTurn.oneKickData
+//                                    .get(oneTurnIndex);
+                            // 将一次击打信息数据显示到页面中
+                            oneKickInfo.setText(message.get(oneTurnIndex));
+                            Log.i(TAG, message.get(oneTurnIndex));
+                            mainInfoPlatform.addView(oneKickInfo);
+                            /*if (FightOneKickData.M2H == fightOneKickData.getHarmType()) {
+                                mainContriHp.setText(fightOneKickData.getHeroCurrentHp() + "");
+                            }*/
+                            // 遍历到下一次击打
+                            oneTurnIndex++;
+                        } else {
+                            // 一轮战斗结束了
 
-                 // mainInfoSv.fullScroll(ScrollView.FOCUS_DOWN);
-                 scrollToBottom(mainInfoSv, mainInfoPlatform);
-                 break;
-         }
+                            TextView fightEndSeparatorInfo = new TextView(MainGameActivity.this);
+                            fightEndSeparatorInfo.setText("--------------------");
+                            mainInfoPlatform.addView(fightEndSeparatorInfo);
+                            oneTurnIndex = 0;
+                            isOneTurnFinghting = false;
+                        }
+                    }
+                    if (mainInfoPlatform.getChildCount() > fightInfoTotalCount) {
+                        mainInfoPlatform.removeViewAt(0);
+                    }
 
-         super.handleMessage(msg);
-     }
+                    // mainInfoSv.fullScroll(ScrollView.FOCUS_DOWN);
+                    scrollToBottom(mainInfoSv, mainInfoPlatform);
+                    break;
+            }
+
+            super.handleMessage(msg);
+        }
 
     };
 
     /**
      * SrcollView战斗信息栏滚到最底部
-     * 
+     *
      * @param scroll
      * @param inner
      */
@@ -214,25 +189,6 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                 scroll.scrollTo(0, offset);
             }
         });
-    }
-
-    /**
-     * 获取一个怪物
-     * <p>
-     * 没有怪物,战斗结束(人或怪物死了)时,随即遭遇一个新的怪物;
-     * </p>
-     * 
-     * @return
-     */
-    private Monster getMonster() {
-        if (monster == null) {
-            monster = ProbabilityEventController.encounterNewMonster(monsters);
-        } else {
-            if (monster.getHp() <= 0 || hero.getHp() <= 0) {
-                monster = ProbabilityEventController.encounterNewMonster(monsters);
-            }
-        }
-        return monster;
     }
 
     @Override
@@ -299,76 +255,82 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private void initGameData() {
         // 英雄
         hero = FightDataInfoController.hero;
+        heroN = new cn.gavin.Hero("123");
+        maze = new Maze(heroN);
         // 左侧战斗信息
         mainInfoSv = (ScrollView) findViewById(R.id.main_info_sv);
         mainInfoPlatform = (LinearLayout) findViewById(R.id.main_info_ll);
         // 根信息栏
         rootItemBarCharacter = (TextView) findViewById(R.id.root_itembar_character);
-        rootItemBarOther = (TextView) findViewById(R.id.root_itembar_other);
+//        rootItemBarOther = (TextView) findViewById(R.id.root_itembar_other);
         // ---- 人物信息栏
         rootItemCharacter = (LinearLayout) findViewById(R.id.root_item_character);
         itembarContri = (TextView) findViewById(R.id.character_itembar_contribute);
-        itembarEquip = (TextView) findViewById(R.id.character_itembar_equip);
-        itembarGoods = (TextView) findViewById(R.id.character_itembar_goods);
+        /*itembarEquip = (TextView) findViewById(R.id.character_itembar_equip);
+        itembarGoods = (TextView) findViewById(R.id.character_itembar_goods);*/
         // ---- ---- 属性
         itemContri = (LinearLayout) findViewById(R.id.character_item_contribute);
         mainContriHp = (TextView) findViewById(R.id.main_contri_hp);
         mainContriAtt = (TextView) findViewById(R.id.main_contri_att);
         mainContriDef = (TextView) findViewById(R.id.main_contri_def);
-        mainContriLv = (TextView) findViewById(R.id.main_contri_level);
+        swordLev = (TextView) findViewById(R.id.main_contri_level);
+        armorLev = (TextView) findViewById(R.id.main_armor_level);
         mainContriNdExp = (TextView) findViewById(R.id.main_contri_needexp);
-        mainContriCurExp = (TextView) findViewById(R.id.main_contri_currentexp);
-        mainContriSp = (TextView) findViewById(R.id.main_contri_sp);
+        mainContriCurMaterial = (TextView) findViewById(R.id.main_contri_currentexp);
 
-        mainContriHp.setText(hero.getHp() + "");
-        mainContriAtt.setText(hero.getAttackValue() + "");
-        mainContriDef.setText(hero.getDefenseValue() + "");
-        mainContriLv.setText(hero.level + "");
-        mainContriNdExp.setText(hero.currentLevelNeedExp() + "");
-        mainContriCurExp.setText(hero.exp + "");
-        mainContriSp.setText(hero.sp + "");
-        // ---- ---- 装备
-        itemEquip = (LinearLayout) findViewById(R.id.character_item_equip);
-        equipWeapon = (TextView) findViewById(R.id.equip_weapon);
-        equipArmor = (TextView) findViewById(R.id.equip_armor);
+        refresh();
+//        // ---- ---- 装备
+//        itemEquip = (LinearLayout) findViewById(R.id.character_item_equip);
+//        equipWeapon = (TextView) findViewById(R.id.equip_weapon);
+//        equipArmor = (TextView) findViewById(R.id.equip_armor);
+//
+//        equipWeapon.setText("木剑" + heroN.getSwordLev() + "+");
+//        equipArmor.setText("破布" + heroN.getArmorLev() + "+");
+//        // ---- ---- 物品
+//        itemGoods = (LinearLayout) findViewById(R.id.character_item_goods);
+//        itemGoodsCountainer = (ListView) findViewById(R.id.item_goods_container);
+//
+//        itemGoodsAdapter = new ItemGoodsAdapter();
+//        itemGoodsCountainer.setAdapter(itemGoodsAdapter);
+//        itemGoodsCountainer.setOnItemClickListener(this);
+//        // ---- 其他信息栏
+//        rootItemOther = (LinearLayout) findViewById(R.id.root_item_other);
+//        itembarShop = (TextView) findViewById(R.id.other_itembar_shop);
+//        itembarMap = (TextView) findViewById(R.id.other_itembar_map);
+//        itembarSkill = (TextView) findViewById(R.id.other_itembar_skill);
+//        // ---- ---- 商店
+//        itemShop = (LinearLayout) findViewById(R.id.other_item_shop);
+//        // ---- ---- 地图(待添加)
+//        itemMap = (LinearLayout) findViewById(R.id.other_item_map);
+//        // ---- ---- 技能
+//        itemSkill = (LinearLayout) findViewById(R.id.other_item_skill);
+//        itemSkillCountainer = (ListView) findViewById(R.id.item_skill_container);
+//
+//        itemSkillAdapter = new ItemSkillAdapter();
+//        itemSkillCountainer.setAdapter(itemSkillAdapter);
+//        itemSkillCountainer.setOnItemClickListener(this);
+//
+//        // itembar的点击监听
+//        rootItemBarCharacter.setOnClickListener(this);
+//        rootItemBarOther.setOnClickListener(this);
+//        itembarContri.setOnClickListener(this);
+//        itembarEquip.setOnClickListener(this);
+//        itembarGoods.setOnClickListener(this);
+//        itembarShop.setOnClickListener(this);
+//        itembarMap.setOnClickListener(this);
+//        itembarSkill.setOnClickListener(this);
+//
+//        monsters = Monster.getMonsters();
+    }
 
-        equipWeapon.setText("无");
-        equipArmor.setText("无");
-        // ---- ---- 物品
-        itemGoods = (LinearLayout) findViewById(R.id.character_item_goods);
-        itemGoodsCountainer = (ListView) findViewById(R.id.item_goods_container);
-
-        itemGoodsAdapter = new ItemGoodsAdapter();
-        itemGoodsCountainer.setAdapter(itemGoodsAdapter);
-        itemGoodsCountainer.setOnItemClickListener(this);
-        // ---- 其他信息栏
-        rootItemOther = (LinearLayout) findViewById(R.id.root_item_other);
-        itembarShop = (TextView) findViewById(R.id.other_itembar_shop);
-        itembarMap = (TextView) findViewById(R.id.other_itembar_map);
-        itembarSkill = (TextView) findViewById(R.id.other_itembar_skill);
-        // ---- ---- 商店
-        itemShop = (LinearLayout) findViewById(R.id.other_item_shop);
-        // ---- ---- 地图(待添加)
-        itemMap = (LinearLayout) findViewById(R.id.other_item_map);
-        // ---- ---- 技能
-        itemSkill = (LinearLayout) findViewById(R.id.other_item_skill);
-        itemSkillCountainer = (ListView) findViewById(R.id.item_skill_container);
-
-        itemSkillAdapter = new ItemSkillAdapter();
-        itemSkillCountainer.setAdapter(itemSkillAdapter);
-        itemSkillCountainer.setOnItemClickListener(this);
-
-        // itembar的点击监听
-        rootItemBarCharacter.setOnClickListener(this);
-        rootItemBarOther.setOnClickListener(this);
-        itembarContri.setOnClickListener(this);
-        itembarEquip.setOnClickListener(this);
-        itembarGoods.setOnClickListener(this);
-        itembarShop.setOnClickListener(this);
-        itembarMap.setOnClickListener(this);
-        itembarSkill.setOnClickListener(this);
-
-        monsters = Monster.getMonsters();
+    private void refresh() {
+        mainContriHp.setText(heroN.getHp() + "");
+        mainContriAtt.setText(heroN.getAttackValue() + "");
+        mainContriDef.setText(heroN.getDefenseValue() + "");
+        swordLev.setText(heroN.getSwordLev() + "");
+        armorLev.setText(heroN.getArmorLev() + "");
+        mainContriCurMaterial.setText(heroN.getMaterial() + "");
+        mainContriNdExp.setText(heroN.getPoint() + "");
     }
 
     private class GameThread extends Thread {
@@ -391,7 +353,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     @Override
     public void onClick(View v) {
         Log.i(TAG, "onClick() -- " + v.getId() + " -- 被点击了");
-        switch (v.getId()) {
+        /*switch (v.getId()) {
             case R.id.root_itembar_character:
                 rootItemBarCharacter.setBackgroundResource(R.color.current_item);
                 rootItemCharacter.setVisibility(View.VISIBLE);
@@ -459,7 +421,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
 
             default:
                 break;
-        }
+        }*/
     }
 
     class ItemSkillAdapter extends BaseAdapter {

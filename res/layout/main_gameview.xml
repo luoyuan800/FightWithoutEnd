@@ -9,7 +9,7 @@
         android:layout_height="70dp"
         android:background="#00ee66"
         android:gravity="center"
-        android:text="无  尽  的  战  斗"
+        android:text="勇 者 闯 迷 宫"
         android:textSize="30sp" />
 
     <RelativeLayout
@@ -51,7 +51,7 @@
                 android:gravity="center"
                 android:text="人物" />
 
-            <View
+            <!--<View
                 android:layout_width="1dp"
                 android:layout_height="fill_parent"
                 android:background="#fff" />
@@ -63,7 +63,7 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 android:gravity="center"
-                android:text="其他" />
+                android:text="其他" />-->
         </LinearLayout>
 
         <View
@@ -103,7 +103,7 @@
                     android:layout_height="fill_parent"
                     android:background="#fff" />
 
-                <TextView
+                <!--<TextView
                     android:id="@+id/character_itembar_equip"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
@@ -124,7 +124,7 @@
                     android:layout_weight="1"
                     android:clickable="true"
                     android:gravity="center"
-                    android:text="物品" />
+                    android:text="物品" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -211,7 +211,7 @@
                         android:layout_width="80dp"
                         android:layout_height="fill_parent"
                         android:gravity="center_vertical"
-                        android:text="等级"
+                        android:text="武器"
                         android:textSize="20sp" />
 
                     <TextView
@@ -221,27 +221,26 @@
                         android:gravity="center_vertical"
                         android:textSize="20sp" />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="30dp"
+                    android:layout_height="50dp"
                     android:orientation="horizontal" >
 
                     <TextView
-                        android:layout_width="55dp"
+                        android:layout_width="80dp"
                         android:layout_height="fill_parent"
                         android:gravity="center_vertical"
-                        android:text="SP"
-                        android:textSize="15sp" />
+                        android:text="护具"
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/main_contri_sp"
+                        android:id="@+id/main_armor_level"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
                         android:gravity="center_vertical"
-                        android:textSize="15sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
-                
+
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="25dp"
@@ -251,7 +250,7 @@
                         android:layout_width="55dp"
                         android:layout_height="fill_parent"
                         android:gravity="center_vertical"
-                        android:text="当前经验"
+                        android:text="锻造材料"
                         android:textSize="12sp" />
 
                     <TextView
@@ -271,7 +270,7 @@
                         android:layout_width="55dp"
                         android:layout_height="fill_parent"
                         android:gravity="center_vertical"
-                        android:text="所需经验"
+                        android:text="点数"
                         android:textSize="12sp" />
 
                     <TextView
@@ -283,7 +282,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:id="@+id/character_item_equip"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -338,9 +337,9 @@
                         android:gravity="center_vertical"
                         android:textSize="10sp" />
                 </LinearLayout>
-            </LinearLayout>
+            </LinearLayout>-->
 
-            <LinearLayout
+           <!-- <LinearLayout
                 android:id="@+id/character_item_goods"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -362,10 +361,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
                 </ListView>
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
 
-        <LinearLayout
+        <!--<LinearLayout
             android:id="@+id/root_item_other"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -517,7 +516,7 @@
                     android:orientation="vertical" >
                 </ListView>
             </LinearLayout>
-        </LinearLayout>
+        </LinearLayout>-->
     </RelativeLayout>
 
 </RelativeLayout>
