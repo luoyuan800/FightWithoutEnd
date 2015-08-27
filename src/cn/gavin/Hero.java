@@ -4,32 +4,33 @@ import java.util.List;
 import java.util.Random;
 
 public class Hero {
-    private static final String[] swordNames;
     private static final String TAG = "Hero";
 
     public static int MAX_GOODS_COUNT = 50;
 
-    // ÑªÉÏÏŞ³É³¤(Ã¿µãÉúÃüµãÊıÔö¼Ó£©
+    // è¡€ä¸Šé™æˆé•¿(æ¯ç‚¹ç”Ÿå‘½ç‚¹æ•°å¢åŠ ï¼‰
     public static final int MAX_HP_RISE = 5;
-    // ¹¥»÷³É³¤£¨Ã¿µãÁ¦Á¿µãÊıÔö¼Ó£©
+    // æ”»å‡»æˆé•¿ï¼ˆæ¯ç‚¹åŠ›é‡ç‚¹æ•°å¢åŠ ï¼‰
     public static final int ATR_RISE = 2;
-    // ·ÀÓù³É³¤ £¨Ã¿µãÃô½İµãÊıÔö¼Ó£©
+    // é˜²å¾¡æˆé•¿ ï¼ˆæ¯ç‚¹æ•æ·ç‚¹æ•°å¢åŠ ï¼‰
     public static final int DEF_RISE = 1;
     private int click;
     private String name;
-    private int hp;//µ±Ç°
-    private int upperHp;//ÉÏÏŞÖµ
+    private int hp;//å½“å‰
+    private int upperHp;//ä¸Šé™å€¼
     private int attackValue;
     private int defenseValue;
     public int level;
-    private List<Skill> existSkill; // ÒÑÓĞµÄ¼¼ÄÜ
+    private List<Skill> existSkill; // å·²æœ‰çš„æŠ€èƒ½
+    private Sword sword;
+    private Armor armor;
     private int swordLev;
     private int armorLev;
     private int material;
     private int point;
-    private int strength;//Á¦Á¿£¬Ó°Ïì¹¥»÷ÊıÖµÉÏÏŞ
-    private int power;//ÌåÁ¦£¬Ó°ÏìHPÉÏÏŞ£¬ÉúÃü»Ö¸´¼¼ÄÜĞ§¹û
-    private int agility;//Ãô½İ£¬Ó°Ïì¼¼ÄÜÊ©·Å¸ÅÂÊ£¬·ÀÓùÊıÖµÉÏÏŞ
+    private int strength;//åŠ›é‡ï¼Œå½±å“æ”»å‡»æ•°å€¼ä¸Šé™
+    private int power;//ä½“åŠ›ï¼Œå½±å“HPä¸Šé™ï¼Œç”Ÿå‘½æ¢å¤æŠ€èƒ½æ•ˆæœ
+    private int agility;//æ•æ·ï¼Œå½±å“æŠ€èƒ½æ–½æ”¾æ¦‚ç‡ï¼Œé˜²å¾¡æ•°å€¼ä¸Šé™
     private int maxMazeLev = 0;
     private Random random;
     private String swordName;
@@ -80,6 +81,8 @@ public class Hero {
         this.level = level;
         this.upperHp = hp;
         existSkill = cn.gavin.Skill.getAllSkills();
+        sword = Sword.æœ¨å‰‘;
+        armor = Armor.ç ´å¸ƒ;
     }
 
     public Hero(String name) {
@@ -102,6 +105,10 @@ public class Hero {
         } else {
             if (material >= 10 + swordLev) {
                 swordLev++;
+                if (sword != sword.levelUp(swordLev)) {
+                    sword = sword.levelUp(swordLev);
+                    swordLev = 0;
+                }
                 return true;
             } else {
                 return false;
@@ -116,6 +123,10 @@ public class Hero {
             if (material >= 10 + armorLev) {
                 material -= 10 + armorLev;
                 armorLev++;
+                if (armor != armor.levelUp(armorLev)) {
+                    armor = armor.levelUp(armorLev);
+                    armorLev = 0;
+                }
                 return true;
             } else {
                 return false;
@@ -201,23 +212,31 @@ public class Hero {
     }
 
     public void click() {
-        if(this.click%1000 == 0){
+        if (this.click % 1000 == 0) {
             point += random.nextInt(15);
         }
-        this.material ++;
+        this.material++;
         this.click++;
     }
 
     public Skill useSkill() {
-        for(Skill skill : existSkill){
-            if(skill.use(this)){
+        for (Skill skill : existSkill) {
+            if (skill.use(this)) {
                 return skill;
             }
         }
         return null;
     }
 
-    public int getUpperHp(){
+    public int getUpperHp() {
         return upperHp;
+    }
+
+    public String getSword() {
+        return sword.name();
+    }
+
+    public String getArmor() {
+        return armor.name();
     }
 }
