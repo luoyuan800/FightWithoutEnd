@@ -124,7 +124,7 @@ public class Skill {
                 }
                 break;
             case 3:
-                int v =Math.round(getHarmAdditionValue() * hero.getUpperHp());
+                int v =Math.round(getHarmAdditionValue() * hero.getUpperHp() + new Random().nextInt(hero.getPower()));
                 if(v + hero.getHp() > hero.getUpperHp()){
                     hero.restore();
                 }else {

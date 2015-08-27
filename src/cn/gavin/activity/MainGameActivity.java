@@ -360,6 +360,15 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     public void onClick(View v) {
         Log.i(TAG, "onClick() -- " + v.getId() + " -- ±»µã»÷ÁË");
         switch (v.getId()) {
+            case R.id.main_contri_add_agi:
+                heroN.addAgility();
+                break;
+            case R.id.main_contri_add_pow:
+                heroN.addLife();
+                break;
+            case R.id.main_contri_add_str:
+                heroN.addStrength();
+                break;
             case R.id.hero_pic:
                 heroN.click();
                 if (heroN.getClick() % 2 == 0) {

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Hero {
+    private static final String[] swordNames;
     private static final String TAG = "Hero";
 
     public static int MAX_GOODS_COUNT = 50;
@@ -31,6 +32,8 @@ public class Hero {
     private int agility;//敏捷，影响技能施放概率，防御数值上限
     private int maxMazeLev = 0;
     private Random random;
+    private String swordName;
+    private String armorName;
 
     public String getName() {
         return name;

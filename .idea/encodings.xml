@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="false" native2AsciiForPropertiesFiles="false" defaultCharsetForPropertiesFiles="GBK">
-    <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/activity/MainGameActivity.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/FightDataInfoController.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/ProbabilityEventController.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/domain/FightOneKickData.java" charset="GBK" />
