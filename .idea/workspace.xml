@@ -34,19 +34,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="80f1bfb2-9343-4574-9f71-60edc316ac54" name="Default" comment="">
-      <change type="DELETED" beforePath="L:\FightWithoutEnd\gen\com\boredream\fightwithoutend\BuildConfig.java" afterPath="" />
-      <change type="DELETED" beforePath="L:\FightWithoutEnd\gen\com\boredream\fightwithoutend\R.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Hero.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Hero.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" afterPath="$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Maze.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Maze.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Monster.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Monster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_main_menu.xml" afterPath="$PROJECT_DIR$/res/layout/activity_main_menu.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/color.xml" afterPath="$PROJECT_DIR$/res/values/color.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main_gameview.xml" afterPath="$PROJECT_DIR$/res/layout/main_gameview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="L:\FightWithoutEnd\src\com\boredream\fightwithoutend\activity\MainGameActivity.java" afterPath="$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" />
-      <change type="MOVED" beforePath="L:\FightWithoutEnd\src\com\boredream\fightwithoutend\activity\MainMenuActivity.java" afterPath="$PROJECT_DIR$/src/cn/gavin/activity/MainMenuActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Skill.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Skill.java" />
     </list>
     <ignored path="FightWithoutEnd.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,24 +64,39 @@
       <file leaf-file-name="Hero.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/gavin/Hero.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2034" max-vertical-offset="2890">
-              <caret line="169" column="20" selection-start-line="169" selection-start-column="20" selection-end-line="169" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2129" max-vertical-offset="3145">
+              <caret line="175" column="16" selection-start-line="175" selection-start-column="16" selection-end-line="175" selection-end-column="16" />
               <folding>
+                <element signature="e#4048#4049#0" expanded="true" />
+                <element signature="e#4081#4082#0" expanded="true" />
                 <element signature="e#4371#4372#0" expanded="true" />
                 <element signature="e#4399#4400#0" expanded="true" />
+                <element signature="e#4779#4780#0" expanded="true" />
+                <element signature="e#4809#4810#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainGameActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java">
+      <file leaf-file-name="Maze.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/gavin/Maze.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7518248" vertical-offset="2020" max-vertical-offset="8041">
-              <caret line="140" column="30" selection-start-line="140" selection-start-column="30" selection-end-line="140" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="147" max-vertical-offset="1088">
+              <caret line="30" column="119" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="119" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#381#389#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainGameActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4233" max-vertical-offset="8041">
+              <caret line="25" column="71" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="71" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -115,38 +121,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Skill.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Skill.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/gavin/Skill.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="269" max-vertical-offset="1241">
-              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.12616822" vertical-offset="1252" max-vertical-offset="2125">
+              <caret line="97" column="78" selection-start-line="97" selection-start-column="78" selection-end-line="97" selection-end-column="78" />
               <folding>
-                <element signature="e#406#407#0" expanded="true" />
-                <element signature="e#431#432#0" expanded="true" />
+                <element signature="e#459#460#0" expanded="true" />
+                <element signature="e#484#485#0" expanded="true" />
+                <element signature="e#1025#1026#0" expanded="true" />
+                <element signature="e#1052#1053#0" expanded="true" />
+                <element signature="e#2756#2764#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="color.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/color.xml">
+      <file leaf-file-name="ProbabilityEventController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/ProbabilityEventController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-              <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="818" max-vertical-offset="1241">
+              <caret line="68" column="64" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Maze.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/gavin/Maze.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="147" max-vertical-offset="1003">
-              <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#381#389#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -169,19 +165,6 @@
                 <element signature="e#4923#4941#0" expanded="true" />
                 <element signature="tag#LinearLayout#5;tag#LinearLayout#1;tag#LinearLayout#0;tag#RelativeLayout#0;tag#RelativeLayout#0" expanded="false" />
                 <element signature="tag#LinearLayout#6;tag#LinearLayout#1;tag#LinearLayout#0;tag#RelativeLayout#0;tag#RelativeLayout#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-              <caret line="19" column="68" selection-start-line="19" selection-start-column="68" selection-end-line="19" selection-end-column="68" />
-              <folding>
-                <element signature="e#401#419#0" expanded="true" />
-                <element signature="e#560#578#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -220,21 +203,21 @@
         <option value="$PROJECT_DIR$/src/com/boredream/fightwithoutend/test/Test.java" />
         <option value="$PROJECT_DIR$/src/com/boredream/fightwithoutend/random/Event.java" />
         <option value="$PROJECT_DIR$/src/com/boredream/fightwithoutend/random/RandomEvent.java" />
-        <option value="$PROJECT_DIR$/src/cn/gavin/Skill.java" />
         <option value="$PROJECT_DIR$/src/cn/gavin/Monster.java" />
         <option value="$PROJECT_DIR$/project.properties" />
         <option value="$PROJECT_DIR$/res/values/styles.xml" />
-        <option value="$PROJECT_DIR$/src/cn/gavin/Maze.java" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/res/layout/activity_main_menu.xml" />
         <option value="$PROJECT_DIR$/res/color/holo_red_dark.xml" />
         <option value="$PROJECT_DIR$/res/values/color.xml" />
-        <option value="$PROJECT_DIR$/src/cn/gavin/Hero.java" />
         <option value="$PROJECT_DIR$/src/com/boredream/fightwithoutend/activity/MainGameActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/cn/gavin/activity/MainMenuActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/main_gameview.xml" />
         <option value="$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" />
+        <option value="$PROJECT_DIR$/src/cn/gavin/Maze.java" />
+        <option value="$PROJECT_DIR$/src/cn/gavin/Hero.java" />
+        <option value="$PROJECT_DIR$/src/cn/gavin/Skill.java" />
       </list>
     </option>
   </component>
@@ -301,6 +284,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="fightwithoutend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FightWithoutEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FightWithoutEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fightwithoutend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -649,8 +654,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1040" extended-state="1" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1920" height="1040" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -665,7 +670,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280543" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.50339365" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50339365" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14677419" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -708,8 +713,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3230" max-vertical-offset="3383">
           <caret line="190" column="24" selection-start-line="190" selection-start-column="24" selection-end-line="190" selection-end-column="24" />
           <folding>
+            <element signature="e#4048#4049#0" expanded="true" />
+            <element signature="e#4081#4082#0" expanded="true" />
             <element signature="e#4371#4372#0" expanded="true" />
             <element signature="e#4399#4400#0" expanded="true" />
+            <element signature="e#4779#4780#0" expanded="true" />
+            <element signature="e#4809#4810#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -751,8 +760,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1498" max-vertical-offset="2074">
           <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
           <folding>
+            <element signature="e#4048#4049#0" expanded="true" />
+            <element signature="e#4081#4082#0" expanded="true" />
             <element signature="e#4371#4372#0" expanded="true" />
             <element signature="e#4399#4400#0" expanded="true" />
+            <element signature="e#4779#4780#0" expanded="true" />
+            <element signature="e#4809#4810#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -762,8 +775,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="850" max-vertical-offset="1530">
           <caret line="50" column="33" selection-start-line="50" selection-start-column="25" selection-end-line="50" selection-end-column="33" />
           <folding>
-            <element signature="e#406#407#0" expanded="true" />
-            <element signature="e#431#432#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1052#1053#0" expanded="true" />
+            <element signature="e#2756#2764#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -822,22 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/ProbabilityEventController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6163194" vertical-offset="665" max-vertical-offset="1241">
-          <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/FightDataInfoController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14409722" vertical-offset="546" max-vertical-offset="3910">
-          <caret line="46" column="52" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Program Files/Android/android-sdk/sources/android-23/java/lang/Integer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="301" max-vertical-offset="11968">
@@ -849,6 +849,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4722222" vertical-offset="0" max-vertical-offset="901">
           <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -856,6 +857,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5902778" vertical-offset="0" max-vertical-offset="799">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -863,14 +865,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33281493" vertical-offset="6603" max-vertical-offset="65739">
           <caret line="467" column="16" selection-start-line="467" selection-start-column="16" selection-end-line="467" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/domain/Skill.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13219285" vertical-offset="0" max-vertical-offset="2023">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -957,33 +951,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Maze.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="1003">
-          <caret line="37" column="73" selection-start-line="37" selection-start-column="73" selection-end-line="37" selection-end-column="73" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#381#389#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/color.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
           <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Hero.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2034" max-vertical-offset="2890">
-          <caret line="169" column="20" selection-start-line="169" selection-start-column="20" selection-end-line="169" selection-end-column="20" />
-          <folding>
-            <element signature="e#4371#4372#0" expanded="true" />
-            <element signature="e#4399#4400#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1024,17 +996,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Skill.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="269" max-vertical-offset="1241">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="e#406#407#0" expanded="true" />
-            <element signature="e#431#432#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main_gameview.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -1056,6 +1017,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/FightDataInfoController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5304136" vertical-offset="0" max-vertical-offset="3910">
+          <caret line="46" column="52" selection-start-line="46" selection-start-column="52" selection-end-line="46" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4233" max-vertical-offset="8041">
+          <caret line="25" column="71" selection-start-line="25" selection-start-column="48" selection-end-line="25" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://C:/Program Files/Android/android-sdk/sources/android-23/android/widget/TextView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="46035" max-vertical-offset="167314">
@@ -1072,12 +1049,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/domain/Skill.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7518248" vertical-offset="2020" max-vertical-offset="8041">
-          <caret line="140" column="30" selection-start-line="140" selection-start-column="30" selection-end-line="140" selection-end-column="30" />
+        <state vertical-scroll-proportion="-2.1435523" vertical-offset="1357" max-vertical-offset="2023">
+          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/ProbabilityEventController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="818" max-vertical-offset="1241">
+          <caret line="68" column="64" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Maze.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="147" max-vertical-offset="1088">
+          <caret line="30" column="119" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="119" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#381#389#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Hero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2129" max-vertical-offset="3145">
+          <caret line="175" column="16" selection-start-line="175" selection-start-column="16" selection-end-line="175" selection-end-column="16" />
+          <folding>
+            <element signature="e#4048#4049#0" expanded="true" />
+            <element signature="e#4081#4082#0" expanded="true" />
+            <element signature="e#4371#4372#0" expanded="true" />
+            <element signature="e#4399#4400#0" expanded="true" />
+            <element signature="e#4779#4780#0" expanded="true" />
+            <element signature="e#4809#4810#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Skill.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12616822" vertical-offset="1252" max-vertical-offset="2125">
+          <caret line="97" column="78" selection-start-line="97" selection-start-column="78" selection-end-line="97" selection-end-column="78" />
+          <folding>
+            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#484#485#0" expanded="true" />
+            <element signature="e#1025#1026#0" expanded="true" />
+            <element signature="e#1052#1053#0" expanded="true" />
+            <element signature="e#2756#2764#0" expanded="true" />
           </folding>
         </state>
       </provider>

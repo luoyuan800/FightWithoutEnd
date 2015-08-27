@@ -23,8 +23,13 @@ public class Maze {
             boolean atk = hero.getAgility() > monster.getHp()/2 || random.nextBoolean();
             while(monster.getHp()>0 && hero.getHp() >0){
                 if(atk){
-                    monster.addHp(-(hero.getAttackValue()));
-                    result.add(hero.getName() + "攻击了" + monster.getName() + "，造成了" + hero.getAttackValue() + "点伤害。");
+                    Skill skill = hero.useSkill();
+                    if(skill!=null){
+                        result.addAll(skill.release(hero, monster));
+                    }else {
+                        monster.addHp(-(hero.getAttackValue()));
+                        result.add(hero.getName() + "攻击了" + monster.getName() + "，造成了" + hero.getAttackValue() + "点伤害。");
+                    }
                 }else{
                     hero.addHp(-(monster.getAtk()));
                     result.add(monster.getName() + "攻击了" + hero.getName() + "，造成了" + monster.getAtk() + "点伤害。");

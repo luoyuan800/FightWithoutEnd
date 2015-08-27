@@ -1,8 +1,9 @@
-
 package cn.gavin;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 public class Skill {
 
@@ -12,9 +13,10 @@ public class Skill {
     private int occurProbability; // 触发几率,百分比数值控制触发
     private int level;
     private int skillEffect; // 技能具体效果
-    private double harm; //伤害加成
+    private float harm; //伤害加成
     private boolean isGroup = false;
     private boolean isRestore = false;
+
     public int getId() {
         return id;
     }
@@ -45,14 +47,14 @@ public class Skill {
 
     /**
      * 获得攻击加成指数（百分比）
-     * 
+     *
      * @return
      */
-    public double getHarmAdditionValue() {
+    public float getHarmAdditionValue() {
         return harm;
     }
 
-    public Skill(int id, String name, double harm, int occurProbability) {
+    public Skill(int id, String name, float harm, int occurProbability) {
         super();
         this.id = id;
         this.name = name;
@@ -63,10 +65,10 @@ public class Skill {
 
     public static List<Skill> getAllSkills() {
         List<Skill> allSkills = new ArrayList<Skill>();
-        Skill skill1 = new Skill(1, "重重一击", 200.0, 10);
-        Skill skill2 = new Skill(2, "群体攻击", 0.80, 7);
+        Skill skill1 = new Skill(1, "重重一击", 200.0f, 10);
+        Skill skill2 = new Skill(2, "群体攻击", 0.80f, 7);
         skill2.isGroup = true;
-        Skill skill3 = new Skill(3, "生命恢复", 20.0, 8);
+        Skill skill3 = new Skill(3, "生命恢复", 0.20f, 8);
         skill3.isRestore = true;
         allSkills.add(skill1);
         allSkills.add(skill2);
@@ -80,5 +82,55 @@ public class Skill {
 
     public boolean isGroup() {
         return isGroup;
+    }
+
+    public boolean use(Hero hero) {
+        Random random = new Random();
+        int occur = 0;
+        switch (id) {
+            case 1:
+                occur = getOccurProbability() + random.nextInt(hero.getStrength() + hero.getAgility());
+                break;
+            case 2:
+                occur = getOccurProbability() + random.nextInt(hero.getAgility() + hero.getAgility());
+                break;
+            case 3:
+                occur = getOccurProbability() + random.nextInt(hero.getPower() + hero.getAgility());
+                break;
+            default:
+                break;
+        }
+        if (occur > 100) {
+            occur = random.nextInt(100);
+        }
+        return random.nextInt(100) + 1 <= occur;
+    }
+
+    public Collection<? extends String> release(Hero hero, Monster ... monsters) {
+        List<String> msg = new ArrayList<String>();
+        msg.add(hero.getName() + "使用了" + getName());
+        int atk = 0;
+        switch (id){
+            case 1:
+                atk = hero.getAttackValue() * Math.round(getHarmAdditionValue());
+                monsters[0].addHp(-atk);
+                msg.add(hero.getName() + "攻击了" + monsters[0].getName() + "，造成了" + atk + "点伤害。");
+                break;
+            case 2:
+                atk = hero.getAttackValue() * Math.round(getHarmAdditionValue());
+                for(Monster monster : monsters) {
+                    monster.addHp(-atk);
+                    msg.add(hero.getName() + "攻击了" + monster.getName() + "，造成了" + atk + "点伤害。");
+                }
+                break;
+            case 3:
+                int v =Math.round(getHarmAdditionValue() * hero.getUpperHp());
+                if(v + hero.getHp() > hero.getUpperHp()){
+                    hero.restore();
+                }else {
+                    hero.addHp(v);
+                }
+        }
+        return msg;
     }
 }

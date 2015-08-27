@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import cn.gavin.R;
 import com.boredream.fightwithoutend.controller.FightDataInfoController;
 import com.boredream.fightwithoutend.domain.Hero;
 import com.boredream.fightwithoutend.domain.Monster;
@@ -34,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.gavin.Maze;
+import cn.gavin.R;
 
 public class MainGameActivity extends Activity implements OnClickListener, OnItemClickListener {
     private static final String TAG = "MainGameActivity";
@@ -136,9 +136,9 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                         metMonInfo.setTextSize(fightInfoSize);
                         mainInfoPlatform.addView(metMonInfo);
                         message = maze.move();
-                        if(message.size()<=5){
+                        if (message.size() <= 5) {
                             heroPic.setBackgroundResource(R.drawable.h_3);
-                        }else{
+                        } else {
                             heroPic.setBackgroundResource(R.drawable.h_1);
                         }
 //                        runOneTurn = FightDataInfoController.runOneTurn(monster);
@@ -362,9 +362,9 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         switch (v.getId()) {
             case R.id.hero_pic:
                 heroN.click();
-                if(heroN.getClick()%2 == 0){
+                if (heroN.getClick() % 2 == 0) {
                     handler.sendEmptyMessage(4);
-                }else{
+                } else {
                     handler.sendEmptyMessage(5);
                 }
                 break;

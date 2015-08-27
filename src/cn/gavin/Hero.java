@@ -204,4 +204,17 @@ public class Hero {
         this.material ++;
         this.click++;
     }
+
+    public Skill useSkill() {
+        for(Skill skill : existSkill){
+            if(skill.use(this)){
+                return skill;
+            }
+        }
+        return null;
+    }
+
+    public int getUpperHp(){
+        return upperHp;
+    }
 }
