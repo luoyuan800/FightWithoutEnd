@@ -1,4 +1,4 @@
-package com.boredream.fightwithoutend.activity;
+package cn.gavin.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,13 +16,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.boredream.fightwithoutend.R;
+import cn.gavin.R;
 import com.boredream.fightwithoutend.controller.FightDataInfoController;
 import com.boredream.fightwithoutend.domain.Hero;
 import com.boredream.fightwithoutend.domain.Monster;
@@ -36,31 +38,31 @@ import cn.gavin.Maze;
 public class MainGameActivity extends Activity implements OnClickListener, OnItemClickListener {
     private static final String TAG = "MainGameActivity";
 
-    // æˆ˜æ–—åˆ·æ–°é€Ÿåº¦
+    // Õ½¶·Ë¢ĞÂËÙ¶È
     private long refreshInfoSpeed = 500;
 
-    // æˆ˜æ–—ä¿¡æ¯
+    // Õ½¶·ĞÅÏ¢
     private ScrollView mainInfoSv;
     private LinearLayout mainInfoPlatform;
     private int fightInfoTotalCount = 50;
     private int fightInfoSize = 20;
 
-    // è‹±é›„
+    // Ó¢ĞÛ
     private Hero hero;
     private cn.gavin.Hero heroN;
     private Maze maze;
-    // æ ¹ä¿¡æ¯æ 
-    private TextView rootItemBarCharacter; // æŒ‰é’®-äººç‰©
-    private TextView rootItemBarOther; // æŒ‰é’®-å…¶ä»–
+    // ¸ùĞÅÏ¢À¸
+    private TextView rootItemBarCharacter; // °´Å¥-ÈËÎï
+    private TextView rootItemBarOther; // °´Å¥-ÆäËû
 
-    // äººç‰©ä¿¡æ¯æ 
+    // ÈËÎïĞÅÏ¢À¸
     private LinearLayout rootItemCharacter;
 
-    private TextView itembarContri; // æŒ‰é’®-å±æ€§
-    private TextView itembarEquip; // æŒ‰é’®-è£…å¤‡
-    private TextView itembarGoods; // æŒ‰é’®-ç‰©å“
+    private TextView itembarContri; // °´Å¥-ÊôĞÔ
+    private TextView itembarEquip; // °´Å¥-×°±¸
+    private TextView itembarGoods; // °´Å¥-ÎïÆ·
 
-    private LinearLayout itemContri; // ä¸»ä½“å†…å®¹-å±æ€§
+    private LinearLayout itemContri; // Ö÷ÌåÄÚÈİ-ÊôĞÔ
     private TextView mainContriHp;
     private TextView mainContriAtt;
     private TextView mainContriDef;
@@ -69,36 +71,43 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private TextView mainContriNdExp;
     private TextView mainContriCurMaterial;
     private TextView mainContriSp;
+    //°´Å¥
+    private Button addstr;
+    private Button addpow;
+    private Button addagi;
+    private Button upSword;
+    private Button upArmor;
+    private Button heroPic;
 
-    private LinearLayout itemEquip; // ä¸»ä½“å†…å®¹-è£…å¤‡
+    private LinearLayout itemEquip; // Ö÷ÌåÄÚÈİ-×°±¸
     private TextView equipWeapon;
     private TextView equipArmor;
 
-    private LinearLayout itemGoods; // ä¸»ä½“å†…å®¹-ç‰©å“
+    private LinearLayout itemGoods; // Ö÷ÌåÄÚÈİ-ÎïÆ·
     private ListView itemGoodsCountainer;
     private ItemGoodsAdapter itemGoodsAdapter;
 
-    // å…¶ä»–ä¿¡æ¯æ 
+    // ÆäËûĞÅÏ¢À¸
     private LinearLayout rootItemOther;
 
-    private TextView itembarShop; // æŒ‰é’®-å•†åº—
-    private TextView itembarMap; // æŒ‰é’®-åœ°å›¾
-    private TextView itembarSkill; // æŒ‰é’®-æŠ€èƒ½
+    private TextView itembarShop; // °´Å¥-ÉÌµê
+    private TextView itembarMap; // °´Å¥-µØÍ¼
+    private TextView itembarSkill; // °´Å¥-¼¼ÄÜ
 
-    private LinearLayout itemShop; // ä¸»ä½“å†…å®¹-å•†åº—
+    private LinearLayout itemShop; // Ö÷ÌåÄÚÈİ-ÉÌµê
 
-    private LinearLayout itemMap; // ä¸»ä½“å†…å®¹-åœ°å›¾
+    private LinearLayout itemMap; // Ö÷ÌåÄÚÈİ-µØÍ¼
 
-    private LinearLayout itemSkill; // ä¸»ä½“å†…å®¹-æŠ€èƒ½
+    private LinearLayout itemSkill; // Ö÷ÌåÄÚÈİ-¼¼ÄÜ
     private ListView itemSkillCountainer;
     private ItemSkillAdapter itemSkillAdapter;
 
-    // æ€ªç‰©
+    // ¹ÖÎï
     private ArrayList<Monster> monsters;
     private Monster monster;
 
     private boolean gameThreadRunning;
-    // æ˜¯å¦æ­£åœ¨è¿›è¡Œä¸€è½®æˆ˜æ–—,æ˜¯ æ­£åœ¨è¿›è¡Œ;å¦ æˆ˜æ–—å·²ç»ç»“æŸ
+    // ÊÇ·ñÕıÔÚ½øĞĞÒ»ÂÖÕ½¶·,ÊÇ ÕıÔÚ½øĞĞ;·ñ Õ½¶·ÒÑ¾­½áÊø
     private boolean isOneTurnFinghting = false;
 
     private GameThread gameThread;
@@ -111,38 +120,48 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         public void handleMessage(Message msg) {
             refresh();
             switch (msg.what) {
+                case 4:
+                    heroPic.setText("µã»÷\n" + heroN.getClick());
+                    heroPic.setBackgroundResource(R.drawable.h_1);
+                    break;
+                case 5:
+                    heroPic.setText("µã»÷\n" + heroN.getClick());
+                    heroPic.setBackgroundResource(R.drawable.h_2);
+                    break;
                 case 10:
                     if (!isOneTurnFinghting) {
                         //monster = getMonster();
 
                         TextView metMonInfo = new TextView(MainGameActivity.this);
                         metMonInfo.setTextSize(fightInfoSize);
-                        metMonInfo.setText("ä½ åˆ°è¾¾äº†è¿·å®«ï¼š " + maze.getLev());
-                        Log.i(TAG, "ä½ åˆ°è¾¾äº†è¿·å®«ï¼š " + maze.getLev());
                         mainInfoPlatform.addView(metMonInfo);
                         message = maze.move();
+                        if(message.size()<=5){
+                            heroPic.setBackgroundResource(R.drawable.h_3);
+                        }else{
+                            heroPic.setBackgroundResource(R.drawable.h_1);
+                        }
 //                        runOneTurn = FightDataInfoController.runOneTurn(monster);
 
                         isOneTurnFinghting = true;
 
                     } else {
-                        // å¦‚æœä¸€è½®æˆ˜æ–—ä¿¡æ¯æ²¡æœ‰æ˜¾ç¤ºå®Œ(ä¸€è½®æˆ˜æ–—å°šæœªç»“æŸ)
+                        // Èç¹ûÒ»ÂÖÕ½¶·ĞÅÏ¢Ã»ÓĞÏÔÊ¾Íê(Ò»ÂÖÕ½¶·ÉĞÎ´½áÊø)
                         if (oneTurnIndex < message.size()) {
                             TextView oneKickInfo = new TextView(MainGameActivity.this);
-                            // è·å–æœ¬è½®æˆ˜æ–—çš„ä¸€æ¬¡å‡»æ‰“ä¿¡æ¯
+                            // »ñÈ¡±¾ÂÖÕ½¶·µÄÒ»´Î»÷´òĞÅÏ¢
 //                            FightOneKickData fightOneKickData = runOneTurn.oneKickData
 //                                    .get(oneTurnIndex);
-                            // å°†ä¸€æ¬¡å‡»æ‰“ä¿¡æ¯æ•°æ®æ˜¾ç¤ºåˆ°é¡µé¢ä¸­
+                            // ½«Ò»´Î»÷´òĞÅÏ¢Êı¾İÏÔÊ¾µ½Ò³ÃæÖĞ
                             oneKickInfo.setText(message.get(oneTurnIndex));
-                            Log.i(TAG, message.get(oneTurnIndex));
                             mainInfoPlatform.addView(oneKickInfo);
                             /*if (FightOneKickData.M2H == fightOneKickData.getHarmType()) {
                                 mainContriHp.setText(fightOneKickData.getHeroCurrentHp() + "");
                             }*/
-                            // éå†åˆ°ä¸‹ä¸€æ¬¡å‡»æ‰“
+                            // ±éÀúµ½ÏÂÒ»´Î»÷´ò
                             oneTurnIndex++;
                         } else {
-                            // ä¸€è½®æˆ˜æ–—ç»“æŸäº†
+                            // Ò»ÂÖÕ½¶·½áÊøÁË
 
                             TextView fightEndSeparatorInfo = new TextView(MainGameActivity.this);
                             fightEndSeparatorInfo.setText("--------------------");
@@ -166,7 +185,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     };
 
     /**
-     * SrcollViewæˆ˜æ–—ä¿¡æ¯æ æ»šåˆ°æœ€åº•éƒ¨
+     * SrcollViewÕ½¶·ĞÅÏ¢À¸¹öµ½×îµ×²¿
      *
      * @param scroll
      * @param inner
@@ -225,12 +244,12 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     }
 
     /**
-     * å¼¹å‡ºé€€å‡ºç¨‹åºæç¤ºæ¡†
+     * µ¯³öÍË³ö³ÌĞòÌáÊ¾¿ò
      */
     private void showExitDialog() {
         AlertDialog dialog = new Builder(this).create();
-        dialog.setTitle("æ˜¯å¦é€€å‡ºæ¸¸æˆ");
-        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "ç¡®å®š",
+        dialog.setTitle("ÊÇ·ñÍË³öÓÎÏ·");
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "È·¶¨",
                 new DialogInterface.OnClickListener() {
 
                     @Override
@@ -240,7 +259,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                     }
 
                 });
-        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "å–æ¶ˆ",
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "È¡Ïû",
                 new DialogInterface.OnClickListener() {
 
                     @Override
@@ -253,17 +272,17 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     }
 
     private void initGameData() {
-        // è‹±é›„
+        // Ó¢ĞÛ
         hero = FightDataInfoController.hero;
         heroN = new cn.gavin.Hero("123");
         maze = new Maze(heroN);
-        // å·¦ä¾§æˆ˜æ–—ä¿¡æ¯
+        // ×ó²àÕ½¶·ĞÅÏ¢
         mainInfoSv = (ScrollView) findViewById(R.id.main_info_sv);
         mainInfoPlatform = (LinearLayout) findViewById(R.id.main_info_ll);
-        // ---- äººç‰©ä¿¡æ¯æ 
+        // ---- ÈËÎïĞÅÏ¢À¸
         /*itembarEquip = (TextView) findViewById(R.id.character_itembar_equip);
         itembarGoods = (TextView) findViewById(R.id.character_itembar_goods);*/
-        // ---- ---- å±æ€§
+        // ---- ---- ÊôĞÔ
         itemContri = (LinearLayout) findViewById(R.id.character_item_contribute);
         mainContriHp = (TextView) findViewById(R.id.main_contri_hp);
         mainContriAtt = (TextView) findViewById(R.id.main_contri_att);
@@ -272,50 +291,23 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         armorLev = (TextView) findViewById(R.id.main_armor_level);
         mainContriNdExp = (TextView) findViewById(R.id.main_contri_needexp);
         mainContriCurMaterial = (TextView) findViewById(R.id.main_contri_currentexp);
-
+        addstr = (Button) findViewById(R.id.main_contri_add_str);
+        addstr.setOnClickListener(this);
+        addagi = (Button) findViewById(R.id.main_contri_add_agi);
+        addagi.setOnClickListener(this);
+        addpow = (Button) findViewById(R.id.main_contri_add_pow);
+        addpow.setOnClickListener(this);
+        upSword = (Button) findViewById(R.id.up_sword);
+        upSword.setOnClickListener(this);
+        upArmor = (Button) findViewById(R.id.up_armor);
+        upArmor.setOnClickListener(this);
+        heroPic = (Button) findViewById(R.id.hero_pic);
+        heroPic.setOnClickListener(this);
+        heroPic.setBackgroundResource(R.drawable.h_1);
+        heroPic.setText("µã»÷\n" + heroN.getClick());
+        heroPic.setTextColor(getResources().getColor(R.color.red, null));
+        heroPic.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         refresh();
-//        // ---- ---- è£…å¤‡
-//        itemEquip = (LinearLayout) findViewById(R.id.character_item_equip);
-//        equipWeapon = (TextView) findViewById(R.id.equip_weapon);
-//        equipArmor = (TextView) findViewById(R.id.equip_armor);
-//
-//        equipWeapon.setText("æœ¨å‰‘" + heroN.getSwordLev() + "+");
-//        equipArmor.setText("ç ´å¸ƒ" + heroN.getArmorLev() + "+");
-//        // ---- ---- ç‰©å“
-//        itemGoods = (LinearLayout) findViewById(R.id.character_item_goods);
-//        itemGoodsCountainer = (ListView) findViewById(R.id.item_goods_container);
-//
-//        itemGoodsAdapter = new ItemGoodsAdapter();
-//        itemGoodsCountainer.setAdapter(itemGoodsAdapter);
-//        itemGoodsCountainer.setOnItemClickListener(this);
-//        // ---- å…¶ä»–ä¿¡æ¯æ 
-//        rootItemOther = (LinearLayout) findViewById(R.id.root_item_other);
-//        itembarShop = (TextView) findViewById(R.id.other_itembar_shop);
-//        itembarMap = (TextView) findViewById(R.id.other_itembar_map);
-//        itembarSkill = (TextView) findViewById(R.id.other_itembar_skill);
-//        // ---- ---- å•†åº—
-//        itemShop = (LinearLayout) findViewById(R.id.other_item_shop);
-//        // ---- ---- åœ°å›¾(å¾…æ·»åŠ )
-//        itemMap = (LinearLayout) findViewById(R.id.other_item_map);
-//        // ---- ---- æŠ€èƒ½
-//        itemSkill = (LinearLayout) findViewById(R.id.other_item_skill);
-//        itemSkillCountainer = (ListView) findViewById(R.id.item_skill_container);
-//
-//        itemSkillAdapter = new ItemSkillAdapter();
-//        itemSkillCountainer.setAdapter(itemSkillAdapter);
-//        itemSkillCountainer.setOnItemClickListener(this);
-//
-//        // itembarçš„ç‚¹å‡»ç›‘å¬
-//        rootItemBarCharacter.setOnClickListener(this);
-//        rootItemBarOther.setOnClickListener(this);
-//        itembarContri.setOnClickListener(this);
-//        itembarEquip.setOnClickListener(this);
-//        itembarGoods.setOnClickListener(this);
-//        itembarShop.setOnClickListener(this);
-//        itembarMap.setOnClickListener(this);
-//        itembarSkill.setOnClickListener(this);
-//
-//        monsters = Monster.getMonsters();
     }
 
     private void refresh() {
@@ -326,6 +318,25 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         armorLev.setText(heroN.getArmorLev() + "");
         mainContriCurMaterial.setText(heroN.getMaterial() + "");
         mainContriNdExp.setText(heroN.getPoint() + "");
+        if (heroN.getMaterial() >= 10 + heroN.getSwordLev()) {
+            upSword.setEnabled(true);
+        } else {
+            upSword.setEnabled(false);
+        }
+        if (heroN.getMaterial() >= 10 + heroN.getArmorLev()) {
+            upArmor.setEnabled(true);
+        } else {
+            upArmor.setEnabled(false);
+        }
+        if (heroN.getPoint() > 0) {
+            addpow.setEnabled(true);
+            addstr.setEnabled(true);
+            addagi.setEnabled(true);
+        } else {
+            addpow.setEnabled(false);
+            addstr.setEnabled(false);
+            addagi.setEnabled(false);
+        }
     }
 
     private class GameThread extends Thread {
@@ -347,76 +358,19 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
 
     @Override
     public void onClick(View v) {
-        Log.i(TAG, "onClick() -- " + v.getId() + " -- è¢«ç‚¹å‡»äº†");
-        /*switch (v.getId()) {
-            case R.id.root_itembar_character:
-                rootItemBarCharacter.setBackgroundResource(R.color.current_item);
-                rootItemCharacter.setVisibility(View.VISIBLE);
-                rootItemBarOther.setBackgroundResource(R.color.transparent);
-                rootItemOther.setVisibility(View.GONE);
+        Log.i(TAG, "onClick() -- " + v.getId() + " -- ±»µã»÷ÁË");
+        switch (v.getId()) {
+            case R.id.hero_pic:
+                heroN.click();
+                if(heroN.getClick()%2 == 0){
+                    handler.sendEmptyMessage(4);
+                }else{
+                    handler.sendEmptyMessage(5);
+                }
                 break;
-            case R.id.root_itembar_other:
-                rootItemBarCharacter.setBackgroundResource(R.color.transparent);
-                rootItemCharacter.setVisibility(View.GONE);
-                rootItemBarOther.setBackgroundResource(R.color.current_item);
-                rootItemOther.setVisibility(View.VISIBLE);
-                break;
-
-            case R.id.character_itembar_contribute:
-                itembarContri.setBackgroundResource(R.color.current_item);
-                itemContri.setVisibility(View.VISIBLE);
-                itembarEquip.setBackgroundResource(R.color.transparent);
-                itemEquip.setVisibility(View.GONE);
-                itembarGoods.setBackgroundResource(R.color.transparent);
-                itemGoods.setVisibility(View.GONE);
-                break;
-
-            case R.id.character_itembar_equip:
-                itembarContri.setBackgroundResource(R.color.transparent);
-                itemContri.setVisibility(View.GONE);
-                itembarEquip.setBackgroundResource(R.color.current_item);
-                itemEquip.setVisibility(View.VISIBLE);
-                itembarGoods.setBackgroundResource(R.color.transparent);
-                itemGoods.setVisibility(View.GONE);
-                break;
-            case R.id.character_itembar_goods:
-                itembarContri.setBackgroundResource(R.color.transparent);
-                itemContri.setVisibility(View.GONE);
-                itembarEquip.setBackgroundResource(R.color.transparent);
-                itemEquip.setVisibility(View.GONE);
-                itembarGoods.setBackgroundResource(R.color.current_item);
-                itemGoods.setVisibility(View.VISIBLE);
-                break;
-
-            case R.id.other_itembar_shop:
-                itembarShop.setBackgroundResource(R.color.current_item);
-                itemShop.setVisibility(View.VISIBLE);
-                itembarMap.setBackgroundResource(R.color.transparent);
-                itemMap.setVisibility(View.GONE);
-                itembarSkill.setBackgroundResource(R.color.transparent);
-                itemSkill.setVisibility(View.GONE);
-                break;
-            case R.id.other_itembar_map:
-                itembarShop.setBackgroundResource(R.color.transparent);
-                itemShop.setVisibility(View.GONE);
-                itembarMap.setBackgroundResource(R.color.current_item);
-                itemMap.setVisibility(View.VISIBLE);
-                itembarSkill.setBackgroundResource(R.color.transparent);
-                itemSkill.setVisibility(View.GONE);
-                break;
-            case R.id.other_itembar_skill:
-                System.out.println("ç‚¹å‡»äº† skill");
-                itembarShop.setBackgroundResource(R.color.transparent);
-                itemShop.setVisibility(View.GONE);
-                itembarMap.setBackgroundResource(R.color.transparent);
-                itemMap.setVisibility(View.GONE);
-                itembarSkill.setBackgroundResource(R.color.current_item);
-                itemSkill.setVisibility(View.VISIBLE);
-                break;
-
             default:
                 break;
-        }*/
+        }
     }
 
     class ItemSkillAdapter extends BaseAdapter {
@@ -522,7 +476,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // ç‰©å“itemç‚¹å‡»
+        // ÎïÆ·itemµã»÷
         if (parent == itemGoodsCountainer) {
             Log.i(TAG, "onItemClick() -- position=" + position +
                     ";obj=" + itemGoodsAdapter.getItem(position));
@@ -538,7 +492,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
             mainContriDef.setText(hero.getDefenseValue() + "");
             itemGoodsAdapter.notifyDataSetChanged();
         }
-        // æŠ€èƒ½itemç‚¹å‡»
+        // ¼¼ÄÜitemµã»÷
         else if (parent == itemSkillCountainer) {
             Log.i(TAG, "onItemClick() -- position=" + position +
                     ";obj=" + itemSkillAdapter.getItem(position));

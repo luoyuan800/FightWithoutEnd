@@ -3,19 +3,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <TextView
-            android:id="@+id/main_title_tv"
-            android:layout_width="fill_parent"
-            android:layout_height="70dp"
-            android:background="#00ee66"
-            android:gravity="center"
-            android:text="勇 者 闯 迷 宫"
-            android:textSize="30sp"/>
 
     <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_below="@id/main_title_tv">
+            >
 
         <ScrollView
                 android:id="@+id/main_info_sv"
@@ -61,7 +53,7 @@
                         android:background="#7a31ff"
                         android:clickable="true"
                         android:gravity="center"
-                        android:text="属性"/>
+                        android:text="@string/attr_name"/>
 
                 <View
                         android:layout_width="1dp"
@@ -72,7 +64,7 @@
             <LinearLayout
                     android:id="@+id/character_item_contribute"
                     android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                 <LinearLayout
@@ -104,7 +96,7 @@
                             android:layout_width="80dp"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
-                            android:text="攻击"
+                            android:text="@string/atk_name"
                             android:textSize="20sp"/>
 
                     <TextView
@@ -124,7 +116,7 @@
                             android:layout_width="80dp"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
-                            android:text="防御"
+                            android:text="@string/def_name"
                             android:textSize="20sp"/>
 
                     <TextView
@@ -169,10 +161,33 @@
 
                     <TextView
                             android:id="@+id/main_contri_needexp"
-                            android:layout_width="fill_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
                             android:textSize="12sp"/>
+                    <Button
+                        android:id="@+id/main_contri_add_str"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:text="+力量"
+                        android:textSize="8sp"
+                        />
+                    <Button
+                        android:id="@+id/main_contri_add_pow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="8sp"
+                        android:text="+体力"
+                        />
+                    <Button
+                        android:id="@+id/main_contri_add_agi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:textSize="8sp"
+                        android:text="+敏捷"/>
                 </LinearLayout>
 
 
@@ -190,10 +205,18 @@
 
                     <TextView
                             android:id="@+id/main_contri_level"
-                            android:layout_width="fill_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
                             android:textSize="20sp"/>
+                    <Button
+                        android:id="@+id/up_sword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        android:text="升级"
+                        />
                 </LinearLayout>
 
                 <LinearLayout
@@ -210,10 +233,64 @@
 
                     <TextView
                             android:id="@+id/main_armor_level"
-                            android:layout_width="fill_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
                             android:gravity="center_vertical"
                             android:textSize="20sp"/>
+                    <Button
+                        android:id="@+id/up_armor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        android:text="升级"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal"
+                >
+                <Button
+                    android:id="@+id/hero_pic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical"
+                />
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                >
+                    <Button
+                        android:id="@+id/life_skill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/life"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="恢复和体力值相关"/>
+                    <Button
+                        android:id="@+id/hit_skill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/hit"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="重击技能和力量值相关"/>
+                    <Button
+                        android:id="@+id/mul_skill"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/mui"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="多重攻击技能和敏捷值相关"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

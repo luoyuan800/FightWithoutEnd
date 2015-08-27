@@ -42,7 +42,7 @@ public class Maze {
         }else{
             level ++;
             int point = level + random.nextInt(level * 2);
-            result.add("进入了下一层迷宫， 获得了" + point + "点数奖励");
+            result.add(hero.getName() + "进入了"+ level + "层迷宫， 获得了" + point + "点数奖励");
             if(level>hero.getMaxMazeLev()){
                 hero.addMaxMazeLev();
             }

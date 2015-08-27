@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">FightWithoutEnd</string>
+    <string name="app_name">勇者闯迷宫</string>
     <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="attr_name">属性</string>
+    <string name="atk_name">攻击</string>
+    <string name="def_name">防御</string>
 
 </resources>

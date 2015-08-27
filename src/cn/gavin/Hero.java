@@ -14,7 +14,7 @@ public class Hero {
     public static final int ATR_RISE = 2;
     // 防御成长 （每点敏捷点数增加）
     public static final int DEF_RISE = 1;
-
+    private int click;
     private String name;
     private int hp;//当前
     private int upperHp;//上限值
@@ -27,9 +27,10 @@ public class Hero {
     private int material;
     private int point;
     private int strength;//力量，影响攻击数值上限
-    private int life;//生命，影响HP上限，生命恢复技能效果
+    private int power;//体力，影响HP上限，生命恢复技能效果
     private int agility;//敏捷，影响技能施放概率，防御数值上限
     private int maxMazeLev = 0;
+    private Random random;
 
     public String getName() {
         return name;
@@ -80,10 +81,10 @@ public class Hero {
 
     public Hero(String name) {
         this(name, 20, 10, 10, 1);
-        Random random = new Random();
+        random = new Random();
         strength = random.nextInt(5);
         agility = random.nextInt(5);
-        life = random.nextInt(5);
+        power = random.nextInt(5);
     }
 
     @Override
@@ -147,14 +148,14 @@ public class Hero {
         }
     }
 
-    public int getLife() {
-        return life;
+    public int getPower() {
+        return power;
     }
 
     public void addLife() {
         if (point != 0) {
             point--;
-            life++;
+            power++;
             hp += MAX_HP_RISE;
             upperHp += MAX_HP_RISE;
         }
@@ -181,13 +182,26 @@ public class Hero {
     }
 
     public void addMaxMazeLev() {
-        this.maxMazeLev ++;
+        this.maxMazeLev++;
     }
 
-    public int getSwordLev(){
+    public int getSwordLev() {
         return swordLev;
     }
-    public int getArmorLev(){
+
+    public int getArmorLev() {
         return armorLev;
+    }
+
+    public int getClick() {
+        return click;
+    }
+
+    public void click() {
+        if(this.click%1000 == 0){
+            point += random.nextInt(15);
+        }
+        this.material ++;
+        this.click++;
     }
 }
