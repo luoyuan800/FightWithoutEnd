@@ -6,9 +6,9 @@ import java.util.Random;
  * Created by gluo on 8/26/2015.
  */
 public class Monster {
-    private final static String[] firstNames = {"ÆÕÍ¨", "¹ÖÒì", "ÉñÆæ"};
-    private final static String[] secondNames = {"Ğ¡", "ÖĞ", "´ó"};
-    private final static String[] lastNames = {"Öí", "ÀÏÊó", "Áú"};
+    private final static String[] firstNames = {"æ™®é€š", "æ€ªå¼‚", "ç¥å¥‡"};
+    private final static String[] secondNames = {"å°", "ä¸­", "å¤§"};
+    private final static String[] lastNames = {"çŒª", "è€é¼ ", "é¾™"};
     private final static int[] firstAdditionHP = {5, 25, 100};
     private final static int[] firstAdditionAtk = {5, 25, 80};
     private final static int[] secondAdditionHP = {5, 25, 100};
@@ -39,9 +39,9 @@ public class Monster {
         firstName = firstNames[first];
         secondName = secondNames[second];
         lastName = lastNames[last];
-        if (hero.getAttackValue() != 0) hp += random.nextInt(hero.getAttackValue());
-        if (hero.getPower() != 0) atk += random.nextInt(hero.getPower());
-        hp += maze.getLev() * random.nextInt(hero.getHp()/2);
+        if (hero.getAttackValue() != 0) hp += random.nextInt(hero.getAttackValue()  + 1);
+        if (hero.getPower() != 0) atk += random.nextInt(hero.getPower() + + maze.getLev() + 1);
+        hp += maze.getLev() * random.nextInt(hero.getUpperHp()/2);
         material = random.nextInt(hp) / 2;
     }
 
@@ -62,6 +62,6 @@ public class Monster {
     }
 
     public String getName() {
-        return firstName + "µÄ" + secondName + "¤Î" + lastName;
+        return firstName + "çš„" + secondName + lastName;
     }
 }

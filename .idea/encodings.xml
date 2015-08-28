@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" useUTFGuessing="false" native2AsciiForPropertiesFiles="false" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/Achievement.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/Armor.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/Hero.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/Maze.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/Monster.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/Skill.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/Sword.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/cn/gavin/activity/MainMenuActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/FightDataInfoController.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/ProbabilityEventController.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/domain/FightOneKickData.java" charset="GBK" />

@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,7 +18,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -25,13 +25,10 @@ import android.widget.TextView;
 
 import com.boredream.fightwithoutend.controller.FightDataInfoController;
 import com.boredream.fightwithoutend.domain.Hero;
-import com.boredream.fightwithoutend.domain.Monster;
-import com.boredream.fightwithoutend.domain.Skill;
-import com.boredream.fightwithoutend.domain.Treasure;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import cn.gavin.Achievement;
 import cn.gavin.Maze;
 import cn.gavin.R;
 
@@ -51,18 +48,10 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private Hero hero;
     private cn.gavin.Hero heroN;
     private Maze maze;
-    // 根信息栏
-    private TextView rootItemBarCharacter; // 按钮-人物
-    private TextView rootItemBarOther; // 按钮-其他
 
     // 人物信息栏
-    private LinearLayout rootItemCharacter;
-
     private TextView itembarContri; // 按钮-属性
-    private TextView itembarEquip; // 按钮-装备
-    private TextView itembarGoods; // 按钮-物品
 
-    private TextView itemContri; // 主体内容-属性
     private TextView mainContriHp;
     private TextView mainContriAtt;
     private TextView mainContriDef;
@@ -70,7 +59,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private TextView armorLev;
     private TextView mainContriNdExp;
     private TextView mainContriCurMaterial;
-    private TextView mainContriSp;
+    private TextView clickCount;
     //按钮
     private Button addstr;
     private Button addpow;
@@ -78,34 +67,11 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private Button upSword;
     private Button upArmor;
     private Button heroPic;
+    private Button pauseButton;
+    private Button achievementButton;
 
-    private LinearLayout itemEquip; // 主体内容-装备
-    private TextView equipWeapon;
-    private TextView equipArmor;
-
-    private LinearLayout itemGoods; // 主体内容-物品
-    private ListView itemGoodsCountainer;
-    private ItemGoodsAdapter itemGoodsAdapter;
-
-    // 其他信息栏
-    private LinearLayout rootItemOther;
-
-    private TextView itembarShop; // 按钮-商店
-    private TextView itembarMap; // 按钮-地图
-    private TextView itembarSkill; // 按钮-技能
-
-    private LinearLayout itemShop; // 主体内容-商店
-
-    private LinearLayout itemMap; // 主体内容-地图
-
-    private LinearLayout itemSkill; // 主体内容-技能
-    private ListView itemSkillCountainer;
-    private ItemSkillAdapter itemSkillAdapter;
-
-    // 怪物
-    private ArrayList<Monster> monsters;
-    private Monster monster;
-
+    private boolean pause;
+    private AchievementAdapter adapter;
     private boolean gameThreadRunning;
     // 是否正在进行一轮战斗,是 正在进行;否 战斗已经结束
     private boolean isOneTurnFinghting = false;
@@ -120,12 +86,20 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         public void handleMessage(Message msg) {
             refresh();
             switch (msg.what) {
+                case 1:
+                    if(pause){
+                        pause = false;
+                        pauseButton.setText("暂停");
+                    }else{
+                        pause = true;
+                        pauseButton.setText("继续");
+                    }
                 case 4:
-                    heroPic.setText("点击\n" + heroN.getClick());
+                    clickCount.setText("点击\n" + heroN.getClick());
                     heroPic.setBackgroundResource(R.drawable.h_1);
                     break;
                 case 5:
-                    heroPic.setText("点击\n" + heroN.getClick());
+                    clickCount.setText("点击\n" + heroN.getClick());
                     heroPic.setBackgroundResource(R.drawable.h_2);
                     break;
                 case 10:
@@ -271,20 +245,42 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         dialog.show();
     }
 
+    private TextView achievementDesc;
+
+    private void showAchievement() {
+        AlertDialog dialog = new Builder(this).create();
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        ListView listView = new ListView(this);
+        adapter = new AchievementAdapter();
+        listView.setAdapter(adapter);
+        listView.setForegroundGravity(Gravity.FILL_HORIZONTAL);
+        linearLayout.addView(listView);
+        achievementDesc = new TextView(this);
+        linearLayout.addView(achievementDesc);
+        dialog.setView(linearLayout);
+        dialog.setTitle("成就");
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "退出", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
     private void initGameData() {
         // 英雄
         hero = FightDataInfoController.hero;
-        heroN = new cn.gavin.Hero("123");
+        heroN = new cn.gavin.Hero("ly");
         maze = new Maze(heroN);
         // 左侧战斗信息
         mainInfoSv = (ScrollView) findViewById(R.id.main_info_sv);
         mainInfoPlatform = (LinearLayout) findViewById(R.id.main_info_ll);
-        // ---- 人物信息栏
-        /*itembarEquip = (TextView) findViewById(R.id.character_itembar_equip);
-        itembarGoods = (TextView) findViewById(R.id.character_itembar_goods);*/
+        // ---- ---- 标题（人物名称 | 最深迷宫数)
+        itembarContri = (TextView) findViewById(R.id.character_itembar_contribute);
         // ---- ---- 属性
-        itemContri = (TextView)findViewById(R.id.character_itembar_contribute);
-
         mainContriHp = (TextView) findViewById(R.id.main_contri_hp);
         mainContriAtt = (TextView) findViewById(R.id.main_contri_att);
         mainContriDef = (TextView) findViewById(R.id.main_contri_def);
@@ -305,9 +301,14 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         heroPic = (Button) findViewById(R.id.hero_pic);
         heroPic.setOnClickListener(this);
         heroPic.setBackgroundResource(R.drawable.h_1);
-        heroPic.setText("点击\n" + heroN.getClick());
         heroPic.setTextColor(getResources().getColor(R.color.red));
-        heroPic.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        heroPic.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        pauseButton = (Button) findViewById(R.id.pause_button);
+        pauseButton.setOnClickListener(this);
+        achievementButton = (Button)findViewById(R.id.achieve_button);
+        achievementButton.setOnClickListener(this);
+        clickCount = (TextView) findViewById(R.id.hero_pic_click_count);
+        clickCount.setText("点击\n" + heroN.getClick());
         refresh();
     }
 
@@ -315,16 +316,16 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         mainContriHp.setText(heroN.getHp() + "");
         mainContriAtt.setText(heroN.getAttackValue() + "");
         mainContriDef.setText(heroN.getDefenseValue() + "");
-        swordLev.setText(heroN.getSword() + "+" + heroN.getSwordLev());
-        armorLev.setText(heroN.getArmor() + "+" + heroN.getArmorLev());
+        swordLev.setText(heroN.getSword() + "\n+" + heroN.getSwordLev());
+        armorLev.setText(heroN.getArmor() + "\n+" + heroN.getArmorLev());
         mainContriCurMaterial.setText(heroN.getMaterial() + "");
         mainContriNdExp.setText(heroN.getPoint() + "");
-        if (heroN.getMaterial() >= 10 + heroN.getSwordLev()) {
+        if (heroN.getMaterial() >= 100 + heroN.getSwordLev()) {
             upSword.setEnabled(true);
         } else {
             upSword.setEnabled(false);
         }
-        if (heroN.getMaterial() >= 10 + heroN.getArmorLev()) {
+        if (heroN.getMaterial() >= 80 + heroN.getArmorLev()) {
             upArmor.setEnabled(true);
         } else {
             upArmor.setEnabled(false);
@@ -338,7 +339,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
             addstr.setEnabled(false);
             addagi.setEnabled(false);
         }
-        itembarContri.setText(heroN.getName() + "  | 迷宫最深到达 " + heroN.getMaxMazeLev() + "层");
+        itembarContri.setText(heroN.getName() + "\n迷宫到达(当前/记录） " + maze.getLev() + "/" + heroN.getMaxMazeLev() + "层");
     }
 
     private class GameThread extends Thread {
@@ -351,8 +352,9 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
-                handler.sendEmptyMessage(10);
+                if(!pause) {
+                    handler.sendEmptyMessage(10);
+                }
 
             }
         }
@@ -362,6 +364,12 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     public void onClick(View v) {
         Log.i(TAG, "onClick() -- " + v.getId() + " -- 被点击了");
         switch (v.getId()) {
+            case R.id.pause_button:
+                handler.sendEmptyMessage(1);
+                break;
+            case R.id.achieve_button:
+                showAchievement();
+                break;
             case R.id.up_armor:
                 heroN.upgradeArmor();
                 break;
@@ -390,22 +398,17 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         }
     }
 
-    class ItemSkillAdapter extends BaseAdapter {
-
-        private List<Skill> skills;
-
-        public ItemSkillAdapter() {
-            skills = hero.getExistSkill();
-        }
+    class AchievementAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return skills.size();
+            return Achievement.values().length;
         }
 
         @Override
-        public Skill getItem(int position) {
-            return skills.get(position);
+        public Achievement getItem(int position) {
+            if (position >= getCount()) position = 0;
+            return Achievement.values()[position];
         }
 
         @Override
@@ -414,106 +417,42 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            SkillViewHolder holder;
+        public View getView(final int position, View convertView, ViewGroup parent) {
+            AchievementViewHolder holder;
             if (convertView == null) {
-                holder = new SkillViewHolder();
+                holder = new AchievementViewHolder();
                 convertView = View.inflate(MainGameActivity.this,
-                        R.layout.skill_item, null);
-                holder.skillName = (TextView) convertView.findViewById(R.id.skill_item_name);
-                holder.skillLevel = (TextView) convertView.findViewById(R.id.skill_item_level);
-                holder.skillRise = (ImageButton) convertView.findViewById(R.id.skill_item_rise);
+                        R.layout.achievement_list_item, null);
+                holder.name = (Button) convertView.findViewById(R.id.achieve_name);
+                holder.name.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        achievementDesc.setText(getItem(position).getDesc());
+                    }
+                });
                 convertView.setTag(holder);
             } else {
-                holder = (SkillViewHolder) convertView.getTag();
+                holder = (AchievementViewHolder) convertView.getTag();
             }
-            final Skill skill = getItem(position);
-            holder.skillName.setText(skill.getName());
-            holder.skillLevel.setText(skill.getLevel() + "");
-            holder.skillRise.setOnClickListener(new OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-                    // hero.riseSkill(skill);
-                    FightDataInfoController.riseHeroSkill(skill);
-                    mainContriSp.setText(hero.sp + "");
-                    Log.i(TAG, "the skill " + skill.getName() + "'lv is up : "
-                            + (skill.getLevel() - 1) + "->" + skill.getLevel());
-                    itemSkillAdapter.notifyDataSetChanged();
-                }
-            });
-            return convertView;
-        }
-    }
-
-    static class SkillViewHolder {
-        TextView skillName;
-        TextView skillLevel;
-        ImageButton skillRise;
-    }
-
-    class ItemGoodsAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return Hero.MAX_GOODS_COUNT;
-        }
-
-        @Override
-        public Treasure getItem(int position) {
-            return hero.totalObtainTreasure.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TreasureViewHolder holder;
-            if (convertView == null) {
-                holder = new TreasureViewHolder();
-                convertView = View.inflate(MainGameActivity.this,
-                        R.layout.treasure_countainer_item, null);
-                holder.treasureName = (TextView) convertView.findViewById(R.id.treasure_item_name);
-                convertView.setTag(holder);
+            Achievement item = getItem(position);
+            holder.name.setText(item.getName());
+            if (!item.isEnable()) {
+                holder.name.setEnabled(false);
             } else {
-                holder = (TreasureViewHolder) convertView.getTag();
+                holder.name.setEnabled(true);
             }
-            holder.treasureName.setText(getItem(position).getName());
             return convertView;
         }
 
     }
 
-    static class TreasureViewHolder {
-        TextView treasureName;
+    static class AchievementViewHolder {
+        Button name;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // 物品item点击
-        if (parent == itemGoodsCountainer) {
-            Log.i(TAG, "onItemClick() -- position=" + position +
-                    ";obj=" + itemGoodsAdapter.getItem(position));
-            Treasure treasure = itemGoodsAdapter.getItem(position);
-            FightDataInfoController.equip(treasure);
-            if (hero.currentWeapon != null) {
-                equipWeapon.setText(hero.currentWeapon.getName());
-            }
-            if (hero.currentArmor != null) {
-                equipArmor.setText(hero.currentArmor.getName());
-            }
-            mainContriAtt.setText(hero.getAttackValue() + "");
-            mainContriDef.setText(hero.getDefenseValue() + "");
-            itemGoodsAdapter.notifyDataSetChanged();
-        }
-        // 技能item点击
-        else if (parent == itemSkillCountainer) {
-            Log.i(TAG, "onItemClick() -- position=" + position +
-                    ";obj=" + itemSkillAdapter.getItem(position));
-        }
+
     }
 
 }

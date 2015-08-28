@@ -19,7 +19,7 @@ public class Maze {
         List<String> result = new ArrayList<String>();
         if(random.nextBoolean()){
             Monster monster = new Monster(hero, this);
-            result.add(hero.getName() + "Óöµ½ÁË" + monster.getName());
+            result.add(hero.getName() + "é‡åˆ°äº†" + monster.getName());
             boolean atk = hero.getAgility() > monster.getHp()/2 || random.nextBoolean();
             while(monster.getHp()>0 && hero.getHp() >0){
                 if(atk){
@@ -28,26 +28,26 @@ public class Maze {
                         result.addAll(skill.release(hero, monster));
                     }else {
                         monster.addHp(-(hero.getAttackValue()));
-                        result.add(hero.getName() + "¹¥»÷ÁË" + monster.getName() + "£¬Ôì³ÉÁË" + hero.getAttackValue() + "µãÉËº¦¡£");
+                        result.add(hero.getName() + "æ”»å‡»äº†" + monster.getName() + "ï¼Œé€ æˆäº†" + hero.getAttackValue() + "ç‚¹ä¼¤å®³ã€‚");
                     }
                 }else{
                     hero.addHp(-(monster.getAtk()));
-                    result.add(monster.getName() + "¹¥»÷ÁË" + hero.getName() + "£¬Ôì³ÉÁË" + monster.getAtk() + "µãÉËº¦¡£");
+                    result.add(monster.getName() + "æ”»å‡»äº†" + hero.getName() + "ï¼Œé€ æˆäº†" + monster.getAtk() + "ç‚¹ä¼¤å®³ã€‚");
                 }
                 atk = !atk;
             }
             if(monster.getHp() <=0){
-                result.add(hero.getName() + "»÷°ÜÁË" + monster.getName() + "£¬ »ñµÃÁË" + monster.getMaterial() + "·İ¶ÍÔì²ÄÁÏ¡£");
+                result.add(hero.getName() + "å‡»è´¥äº†" + monster.getName() + "ï¼Œ è·å¾—äº†" + monster.getMaterial() + "ä»½é”»é€ ææ–™ã€‚");
                 hero.addMaterial(monster.getMaterial());
             }else{
-                result.add(hero.getName() + "±»" + monster.getName() + "´ò°ÜÁË£¬»Øµ½ÃÔ¹¬µÚÒ»²ã¡£");
+                result.add(hero.getName() + "è¢«" + monster.getName() + "æ‰“è´¥äº†ï¼Œå›åˆ°è¿·å®«ç¬¬ä¸€å±‚ã€‚");
                 this.level = 1;
                 hero.restore();
             }
         }else{
             level ++;
-            int point = level + random.nextInt(level * 2);
-            result.add(hero.getName() + "½øÈëÁË"+ level + "²ãÃÔ¹¬£¬ »ñµÃÁË" + point + "µãÊı½±Àø");
+            int point = 2 + random.nextInt(level)/2;
+            result.add(hero.getName() + "è¿›å…¥äº†"+ level + "å±‚è¿·å®«ï¼Œ è·å¾—äº†" + point + "ç‚¹æ•°å¥–åŠ±");
             if(level>hero.getMaxMazeLev()){
                 hero.addMaxMazeLev();
             }

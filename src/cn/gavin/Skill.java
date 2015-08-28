@@ -10,10 +10,10 @@ public class Skill {
     private int id;
     private String name;
     private int type;
-    private int occurProbability; // ´¥·¢¼¸ÂÊ,°Ù·Ö±ÈÊıÖµ¿ØÖÆ´¥·¢
+    private int occurProbability; // è§¦å‘å‡ ç‡,ç™¾åˆ†æ¯”æ•°å€¼æ§åˆ¶è§¦å‘
     private int level;
-    private int skillEffect; // ¼¼ÄÜ¾ßÌåĞ§¹û
-    private float harm; //ÉËº¦¼Ó³É
+    private int skillEffect; // æŠ€èƒ½å…·ä½“æ•ˆæœ
+    private float harm; //ä¼¤å®³åŠ æˆ
     private boolean isGroup = false;
     private boolean isRestore = false;
 
@@ -46,7 +46,7 @@ public class Skill {
     }
 
     /**
-     * »ñµÃ¹¥»÷¼Ó³ÉÖ¸Êı£¨°Ù·Ö±È£©
+     * è·å¾—æ”»å‡»åŠ æˆæŒ‡æ•°ï¼ˆç™¾åˆ†æ¯”ï¼‰
      *
      * @return
      */
@@ -65,10 +65,10 @@ public class Skill {
 
     public static List<Skill> getAllSkills() {
         List<Skill> allSkills = new ArrayList<Skill>();
-        Skill skill1 = new Skill(1, "ÖØÖØÒ»»÷", 200.0f, 10);
-        Skill skill2 = new Skill(2, "ÈºÌå¹¥»÷", 0.80f, 7);
+        Skill skill3 = new Skill(3, "ç”Ÿå‘½æ¢å¤", 0.20f, 8);
+        Skill skill2 = new Skill(2, "ç¾¤ä½“æ”»å‡»", 0.80f, 7);
+        Skill skill1 = new Skill(1, "é‡é‡ä¸€å‡»", 200.0f, 10);
         skill2.isGroup = true;
-        Skill skill3 = new Skill(3, "ÉúÃü»Ö¸´", 0.20f, 8);
         skill3.isRestore = true;
         allSkills.add(skill1);
         allSkills.add(skill2);
@@ -87,15 +87,19 @@ public class Skill {
     public boolean use(Hero hero) {
         Random random = new Random();
         int occur = 0;
+        int r;
         switch (id) {
             case 1:
-                occur = getOccurProbability() + random.nextInt(hero.getStrength() + hero.getAgility());
+                r = diejia(hero.getStrength()) + diejia(hero.getAgility());
+                occur = getOccurProbability() + random.nextInt(r == 0 ? 1 : r);
                 break;
             case 2:
-                occur = getOccurProbability() + random.nextInt(hero.getAgility() + hero.getAgility());
+                r = diejia(hero.getAgility()) + diejia(hero.getAgility());
+                occur = getOccurProbability() + random.nextInt(r == 0 ? 1 : r);
                 break;
             case 3:
-                occur = getOccurProbability() + random.nextInt(hero.getPower() + hero.getAgility());
+                r = diejia(hero.getPower()) + diejia(hero.getAgility());
+                occur = getOccurProbability() + random.nextInt(r == 0 ? 1 : r);
                 break;
             default:
                 break;
@@ -106,30 +110,39 @@ public class Skill {
         return random.nextInt(100) + 1 <= occur;
     }
 
-    public Collection<? extends String> release(Hero hero, Monster ... monsters) {
+    private int diejia(int num){
+        String str = String.valueOf(num);
+        int result =0;
+        for(int i =0 ;i<str.length();i++){
+            result += Integer.parseInt(str.charAt(i) + "");
+        }
+        return result;
+    }
+    public Collection<? extends String> release(Hero hero, Monster... monsters) {
         List<String> msg = new ArrayList<String>();
-        msg.add(hero.getName() + "Ê¹ÓÃÁË" + getName());
+        msg.add(hero.getName() + "ä½¿ç”¨äº†" + getName());
         int atk = 0;
-        switch (id){
+        switch (id) {
             case 1:
                 atk = hero.getAttackValue() * Math.round(getHarmAdditionValue());
                 monsters[0].addHp(-atk);
-                msg.add(hero.getName() + "¹¥»÷ÁË" + monsters[0].getName() + "£¬Ôì³ÉÁË" + atk + "µãÉËº¦¡£");
+                msg.add(hero.getName() + "æ”»å‡»äº†" + monsters[0].getName() + "ï¼Œé€ æˆäº†" + atk + "ç‚¹ä¼¤å®³ã€‚");
                 break;
             case 2:
                 atk = hero.getAttackValue() * Math.round(getHarmAdditionValue());
-                for(Monster monster : monsters) {
+                for (Monster monster : monsters) {
                     monster.addHp(-atk);
-                    msg.add(hero.getName() + "¹¥»÷ÁË" + monster.getName() + "£¬Ôì³ÉÁË" + atk + "µãÉËº¦¡£");
+                    msg.add(hero.getName() + "æ”»å‡»äº†" + monster.getName() + "ï¼Œé€ æˆäº†" + atk + "ç‚¹ä¼¤å®³ã€‚");
                 }
                 break;
             case 3:
-                int v =Math.round(getHarmAdditionValue() * hero.getUpperHp() + new Random().nextInt(hero.getPower()));
-                if(v + hero.getHp() > hero.getUpperHp()){
+                int v = Math.round(getHarmAdditionValue() * hero.getUpperHp() + new Random().nextInt(hero.getPower()!=0?hero.getPower():1));
+                if (v + hero.getHp() > hero.getUpperHp()) {
                     hero.restore();
-                }else {
+                } else {
                     hero.addHp(v);
                 }
+                msg.add(hero.getName() + "æ¢å¤äº†" + v + "ç‚¹HP");
         }
         return msg;
     }

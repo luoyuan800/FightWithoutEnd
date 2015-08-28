@@ -35,7 +35,11 @@ public class Hero {
     private Random random;
     private String swordName;
     private String armorName;
+    private int clickAward = 1;
 
+    public void addClickAward(int num){
+        clickAward += num;
+    }
     public String getName() {
         return name;
     }
@@ -103,7 +107,8 @@ public class Hero {
         if (swordLev * 10 + attackValue >= Integer.MAX_VALUE - 100) {
             return false;
         } else {
-            if (material >= 10 + swordLev) {
+            if (material >= 100 + swordLev) {
+                material -= 100 + armorLev;
                 swordLev++;
                 if (sword != sword.levelUp(swordLev)) {
                     sword = sword.levelUp(swordLev);
@@ -117,11 +122,11 @@ public class Hero {
     }
 
     public boolean upgradeArmor() {
-        if (armorLev * 10 + defenseValue >= Integer.MAX_VALUE - 100) {
+        if (armorLev * 8 + defenseValue >= Integer.MAX_VALUE - 100) {
             return false;
         } else {
-            if (material >= 10 + armorLev) {
-                material -= 10 + armorLev;
+            if (material >= 80 + armorLev) {
+                material -= 80 + armorLev;
                 armorLev++;
                 if (armor != armor.levelUp(armorLev)) {
                     armor = armor.levelUp(armorLev);
@@ -147,7 +152,8 @@ public class Hero {
     }
 
     public void addPoint(int point) {
-        this.point += point;
+        if (this.point < Integer.MAX_VALUE - point)
+            this.point += point;
     }
 
     public int getStrength() {
@@ -155,10 +161,19 @@ public class Hero {
     }
 
     public void addStrength() {
-        if (point != 0) {
+        if (point != 0 && strength < Integer.MAX_VALUE - 5) {
             point--;
             strength++;
-            attackValue += ATR_RISE;
+            if (attackValue < Integer.MAX_VALUE - ATR_RISE)
+                attackValue += ATR_RISE;
+        }
+    }
+
+    public void addStrength(int str) {
+        if (strength < Integer.MAX_VALUE - strength) {
+            strength+=str;
+            if (attackValue < Integer.MAX_VALUE - ATR_RISE * str)
+                attackValue += ATR_RISE * str;
         }
     }
 
@@ -167,23 +182,43 @@ public class Hero {
     }
 
     public void addLife() {
-        if (point != 0) {
+        if (point != 0 && power < Integer.MAX_VALUE - 5) {
             point--;
             power++;
-            hp += MAX_HP_RISE;
-            upperHp += MAX_HP_RISE;
+            if (upperHp < Integer.MAX_VALUE - MAX_HP_RISE) {
+                hp += MAX_HP_RISE;
+                upperHp += MAX_HP_RISE;
+            }
         }
     }
 
+    public void addLife(int life) {
+        if (power < Integer.MAX_VALUE - life) {
+            power+=life;
+            if (upperHp < Integer.MAX_VALUE - MAX_HP_RISE * life) {
+                hp += MAX_HP_RISE * life;
+                upperHp += MAX_HP_RISE * life;
+            }
+        }
+    }
     public int getAgility() {
         return agility;
     }
 
     public void addAgility() {
-        if (point != 0) {
+        if (point != 0 && agility < Integer.MAX_VALUE - 5) {
             point--;
             agility++;
-            defenseValue += DEF_RISE;
+            if (defenseValue < Integer.MAX_VALUE - DEF_RISE)
+                defenseValue += DEF_RISE;
+        }
+    }
+
+    public void addAgility(int agi) {
+        if (point != 0 && agility < Integer.MAX_VALUE - agi) {
+            agility+=agi;
+            if (defenseValue < Integer.MAX_VALUE - DEF_RISE * agi)
+                defenseValue += DEF_RISE * agi;
         }
     }
 
@@ -196,7 +231,9 @@ public class Hero {
     }
 
     public void addMaxMazeLev() {
-        this.maxMazeLev++;
+        if (this.maxMazeLev < Integer.MAX_VALUE - 10) {
+            this.maxMazeLev++;
+        }
     }
 
     public int getSwordLev() {
@@ -215,8 +252,23 @@ public class Hero {
         if (this.click % 1000 == 0) {
             point += random.nextInt(15);
         }
-        this.material++;
+        this.material+=clickAward;
         this.click++;
+        switch (click) {
+            case 100:
+                Achievement.click100.enable(this);
+                break;
+            case 10000:
+                Achievement.click10000.enable(this);
+                break;
+            case 50000:
+                Achievement.click50000.enable(this);
+                break;
+            case 100000:
+                Achievement.click100000.enable(this);
+                break;
+        }
+
     }
 
     public Skill useSkill() {
