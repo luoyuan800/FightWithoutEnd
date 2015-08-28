@@ -7,14 +7,14 @@ import java.util.Random;
  */
 public class Monster {
     private final static String[] firstNames = {"普通", "怪异", "神奇"};
+    private final static int[] firstAdditionHP = {5, 25, 1000};
+    private final static int[] firstAdditionAtk = {5, 25, 800};
     private final static String[] secondNames = {"小", "中", "大"};
-    private final static String[] lastNames = {"猪", "老鼠", "龙"};
-    private final static int[] firstAdditionHP = {5, 25, 100};
-    private final static int[] firstAdditionAtk = {5, 25, 80};
     private final static int[] secondAdditionHP = {5, 25, 100};
     private final static int[] secondAdditionAtk = {5, 25, 100};
-    private final static int[] baseHP = {5, 25, 100};
-    private final static int[] baseAtk = {5, 25, 30};
+    private final static String[] lastNames = {"猪", "老鼠", "龙"};
+    private final static int[] baseHP = {5, 25, 1000};
+    private final static int[] baseAtk = {5, 25, 100};
     private String firstName;
     private String secondName;
     private String lastName;

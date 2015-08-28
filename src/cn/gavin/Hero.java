@@ -57,7 +57,7 @@ public class Hero {
     }
 
     public int getAttackValue() {
-        return attackValue + swordLev * 10;
+        return attackValue +  random.nextInt(sword.getBase()) + random.nextInt(swordLev);
     }
 
     public void addAttackValue(int attackValue) {
@@ -65,7 +65,7 @@ public class Hero {
     }
 
     public int getDefenseValue() {
-        return defenseValue + armorLev * 8;
+        return defenseValue + random.nextInt(armor.getBase()) + random.nextInt(armorLev);
     }
 
     public void addDefenseValue(int defenseValue) {

@@ -67,7 +67,7 @@ public class Skill {
         List<Skill> allSkills = new ArrayList<Skill>();
         Skill skill3 = new Skill(3, "生命恢复", 0.20f, 8);
         Skill skill2 = new Skill(2, "群体攻击", 0.80f, 7);
-        Skill skill1 = new Skill(1, "重重一击", 200.0f, 10);
+        Skill skill1 = new Skill(1, "重重一击", 2.0f, 10);
         skill2.isGroup = true;
         skill3.isRestore = true;
         allSkills.add(skill1);
