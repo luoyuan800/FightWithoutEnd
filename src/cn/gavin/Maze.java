@@ -31,8 +31,12 @@ public class Maze {
                         result.add(hero.getName() + "攻击了" + monster.getName() + "，造成了" + hero.getAttackValue() + "点伤害。");
                     }
                 }else{
-                    hero.addHp(-(monster.getAtk()));
-                    result.add(monster.getName() + "攻击了" + hero.getName() + "，造成了" + monster.getAtk() + "点伤害。");
+                    int harm = monster.getAtk() - hero.getDefenseValue();
+                    if(harm <= 0) {
+                        harm = random.nextInt(level+1);
+                    }
+                    hero.addHp(-harm);
+                    result.add(monster.getName() + "攻击了" + hero.getName() + "，造成了" + harm + "点伤害。");
                 }
                 atk = !atk;
             }
@@ -46,7 +50,7 @@ public class Maze {
             }
         }else{
             level ++;
-            int point = 2 + random.nextInt(level)/2;
+            int point = 2 + random.nextInt(level +1)/2;
             result.add(hero.getName() + "进入了"+ level + "层迷宫， 获得了" + point + "点数奖励");
             if(level>hero.getMaxMazeLev()){
                 hero.addMaxMazeLev();
@@ -58,5 +62,9 @@ public class Maze {
 
     public int getLev() {
         return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

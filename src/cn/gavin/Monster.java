@@ -13,8 +13,8 @@ public class Monster {
     private final static int[] secondAdditionHP = {5, 25, 100};
     private final static int[] secondAdditionAtk = {5, 25, 100};
     private final static String[] lastNames = {"猪", "老鼠", "龙"};
-    private final static int[] baseHP = {5, 25, 1000};
-    private final static int[] baseAtk = {5, 25, 100};
+    private final static int[] baseHP = {15, 55, 1000};
+    private final static int[] baseAtk = {15, 55, 100};
     private String firstName;
     private String secondName;
     private String lastName;

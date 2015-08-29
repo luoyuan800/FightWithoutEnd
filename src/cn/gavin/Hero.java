@@ -37,9 +37,10 @@ public class Hero {
     private String armorName;
     private int clickAward = 1;
 
-    public void addClickAward(int num){
+    public void addClickAward(int num) {
         clickAward += num;
     }
+
     public String getName() {
         return name;
     }
@@ -56,16 +57,32 @@ public class Hero {
         this.hp += hp;
     }
 
+    public int getBaseAttackValue() {
+        return attackValue;
+    }
+
+    public int getUpperAtk(){
+        return attackValue + sword.getBase() + swordLev;
+    }
+
+    public int getUpperDef(){
+        return defenseValue + armorLev + armor.getBase();
+    }
+
     public int getAttackValue() {
-        return attackValue +  random.nextInt(sword.getBase()) + random.nextInt(swordLev);
+        return attackValue + random.nextInt(sword.getBase()) + random.nextInt(swordLev + 1);
     }
 
     public void addAttackValue(int attackValue) {
         this.attackValue += attackValue;
     }
 
+    public int getBaseDefense() {
+        return defenseValue;
+    }
+
     public int getDefenseValue() {
-        return defenseValue + random.nextInt(armor.getBase()) + random.nextInt(armorLev);
+        return defenseValue + random.nextInt(armor.getBase()) + random.nextInt(armorLev + 1);
     }
 
     public void addDefenseValue(int defenseValue) {
@@ -104,7 +121,7 @@ public class Hero {
     }
 
     public boolean upgradeSword() {
-        if (swordLev * 10 + attackValue >= Integer.MAX_VALUE - 100) {
+        if (swordLev + sword.getBase() + attackValue >= Integer.MAX_VALUE - 100) {
             return false;
         } else {
             if (material >= 100 + swordLev) {
@@ -122,7 +139,7 @@ public class Hero {
     }
 
     public boolean upgradeArmor() {
-        if (armorLev * 8 + defenseValue >= Integer.MAX_VALUE - 100) {
+        if (armorLev + armor.getBase() + defenseValue >= Integer.MAX_VALUE - 100) {
             return false;
         } else {
             if (material >= 80 + armorLev) {
@@ -171,7 +188,7 @@ public class Hero {
 
     public void addStrength(int str) {
         if (strength < Integer.MAX_VALUE - strength) {
-            strength+=str;
+            strength += str;
             if (attackValue < Integer.MAX_VALUE - ATR_RISE * str)
                 attackValue += ATR_RISE * str;
         }
@@ -194,13 +211,14 @@ public class Hero {
 
     public void addLife(int life) {
         if (power < Integer.MAX_VALUE - life) {
-            power+=life;
+            power += life;
             if (upperHp < Integer.MAX_VALUE - MAX_HP_RISE * life) {
                 hp += MAX_HP_RISE * life;
                 upperHp += MAX_HP_RISE * life;
             }
         }
     }
+
     public int getAgility() {
         return agility;
     }
@@ -216,7 +234,7 @@ public class Hero {
 
     public void addAgility(int agi) {
         if (point != 0 && agility < Integer.MAX_VALUE - agi) {
-            agility+=agi;
+            agility += agi;
             if (defenseValue < Integer.MAX_VALUE - DEF_RISE * agi)
                 defenseValue += DEF_RISE * agi;
         }
@@ -252,7 +270,7 @@ public class Hero {
         if (this.click % 1000 == 0) {
             point += random.nextInt(15);
         }
-        this.material+=clickAward;
+        this.material += clickAward;
         this.click++;
         switch (click) {
             case 100:
@@ -290,5 +308,73 @@ public class Hero {
 
     public String getArmor() {
         return armor.name();
+    }
+
+    public void setClick(int click) {
+        this.click = click;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public void setUpperHp(int upperHp) {
+        this.upperHp = upperHp;
+    }
+
+    public void setAttackValue(int attackValue) {
+        this.attackValue = attackValue;
+    }
+
+    public void setDefenseValue(int defenseValue) {
+        this.defenseValue = defenseValue;
+    }
+
+    public void setSword(Sword sword) {
+        this.sword = sword;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+
+    public void setSwordLev(int swordLev) {
+        this.swordLev = swordLev;
+    }
+
+    public void setArmorLev(int armorLev) {
+        this.armorLev = armorLev;
+    }
+
+    public void setMaterial(int material) {
+        this.material = material;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public void setAgility(int agility) {
+        this.agility = agility;
+    }
+
+    public void setMaxMazeLev(int maxMazeLev) {
+        this.maxMazeLev = maxMazeLev;
+    }
+
+    public void setClickAward(int clickAward) {
+        this.clickAward = clickAward;
+    }
+
+    public int getClickAward() {
+        return clickAward;
     }
 }

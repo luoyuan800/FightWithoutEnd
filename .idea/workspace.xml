@@ -21,37 +21,59 @@
   </component>
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <target>android-17</target>
+      </config>
     </shared>
     <layouts>
       <layout url="file://$PROJECT_DIR$/res/layout/main_gameview.xml">
         <config>
+          <device>4.7</device>
           <theme>@style/AppTheme</theme>
         </config>
       </layout>
     </layouts>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="80f1bfb2-9343-4574-9f71-60edc316ac54" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Armor.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Armor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FightWithoutEnd.iml" afterPath="$PROJECT_DIR$/FightWithoutEnd.iml" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\controller\FightDataInfoController.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\controller\ProbabilityEventController.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\domain\FightOneKickData.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\domain\FightOneturnData.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\domain\Hero.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\domain\Monster.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\domain\Skill.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\domain\Treasure.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\random\Event.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\random\RandomEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="G:\fwd\FightWithoutEnd\src\com\boredream\fightwithoutend\test\Test.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Achievement.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Achievement.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Hero.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Hero.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" afterPath="$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Maze.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Maze.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Monster.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Monster.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Skill.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Skill.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cn/gavin/Sword.java" afterPath="$PROJECT_DIR$/src/cn/gavin/Sword.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/achievement_list_item.xml" afterPath="$PROJECT_DIR$/res/layout/achievement_list_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main_gameview.xml" afterPath="$PROJECT_DIR$/res/layout/main_gameview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FightWithoutEnd.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
-    <file path="/Dummy.txt" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440776899158" ignored="false" />
-    <file path="/Hero.java" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440778086426" ignored="false" />
+    <file path="/Dummy.txt" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440837947686" ignored="false" />
+    <file path="/Hero.java" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440862228587" ignored="false" />
     <file path="/Sword.java" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440777617100" ignored="false" />
     <file path="/Armor.java" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440777966969" ignored="false" />
+    <file path="/main_gameview.xml" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440856127756" ignored="false" />
+    <file path="/MainGameActivity.java" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440864111005" ignored="false" />
+    <file path="/a.dummy" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440845218885" ignored="false" />
+    <file path="/achievement_list_item.xml" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440857068798" ignored="false" />
+    <file path="/Achievement.java" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440863883222" ignored="false" />
+    <file path="/fragment.java" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440855173844" ignored="false" />
+    <file path="/Maze.java" changelist="80f1bfb2-9343-4574-9f71-60edc316ac54" time="1440855871949" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +88,8 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -114,17 +137,19 @@
       <file leaf-file-name="Hero.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/gavin/Hero.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="0" selection-start="1711" selection-end="1711" vertical-scroll-proportion="0.0">
+            <state line="55" column="16" selection-start="1307" selection-end="1307" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Maze.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Maze.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/gavin/Maze.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="13" selection-start="150" selection-end="150" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="36" column="21" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.5808081">
+              <folding>
+                <element signature="e#381#389#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,7 +157,7 @@
       <file leaf-file-name="Monster.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/gavin/Monster.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="0" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
+            <state line="7" column="22" selection-start="108" selection-end="108" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -141,16 +166,7 @@
       <file leaf-file-name="Skill.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/gavin/Skill.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="54" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Achievement.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/gavin/Achievement.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="12" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0">
+            <state line="120" column="40" selection-start="3082" selection-end="3082" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -159,26 +175,24 @@
       <file leaf-file-name="MainGameActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="535" column="25" selection-start="19153" selection-end="19153" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6921#7237#0" expanded="true" />
+                <element signature="e#7217#7218#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Sword.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cn/gavin/Sword.java">
+      <file leaf-file-name="Achievement.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cn/gavin/Achievement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="78" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Armor.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/cn/gavin/Armor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="19" selection-start="206" selection-end="206" vertical-scroll-proportion="0.46341464">
-              <folding />
+            <state line="39" column="27" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1763#1797#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -203,20 +217,20 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/boredream/fightwithoutend/activity/MainGameActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/src/cn/gavin/Maze.java" />
         <option value="$PROJECT_DIR$/src/cn/gavin/activity/MainMenuActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/achievement_list.xml" />
         <option value="$PROJECT_DIR$/src/cn/gavin/activity/AcievementView.java" />
         <option value="$PROJECT_DIR$/src/cn/gavin/activity/AchievementView.java" />
-        <option value="$PROJECT_DIR$/res/layout/achievement_list_item.xml" />
-        <option value="$PROJECT_DIR$/src/cn/gavin/Achievement.java" />
-        <option value="$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" />
-        <option value="$PROJECT_DIR$/res/layout/main_gameview.xml" />
-        <option value="$PROJECT_DIR$/src/cn/gavin/Sword.java" />
         <option value="$PROJECT_DIR$/src/cn/gavin/Skill.java" />
         <option value="$PROJECT_DIR$/src/cn/gavin/Armor.java" />
+        <option value="$PROJECT_DIR$/src/cn/gavin/Sword.java" />
+        <option value="$PROJECT_DIR$/res/layout/main_gameview.xml" />
+        <option value="$PROJECT_DIR$/res/layout/achievement_list_item.xml" />
         <option value="$PROJECT_DIR$/src/cn/gavin/Hero.java" />
+        <option value="$PROJECT_DIR$/src/cn/gavin/Achievement.java" />
+        <option value="$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" />
         <option value="$PROJECT_DIR$/src/cn/gavin/Monster.java" />
+        <option value="$PROJECT_DIR$/src/cn/gavin/Maze.java" />
       </list>
     </option>
   </component>
@@ -312,32 +326,22 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FightWithoutEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FightWithoutEnd" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
+              <option name="myItemId" value="gavin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
+              <option name="myItemId" value="activity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -439,28 +443,31 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="LayoutCode.rearrangeEntriesXML" value="true" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="File.Encoding" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="DEBUGGABLE_DEVICE" value="emulator-5554 (4.7)" />
+    <property name="DEBUGGABLE_PROCESS" value="cn.gavin" />
     <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src" />
+    <property name="options.lastSelected" value="File.Encoding" />
+    <property name="LayoutCode.rearrangeEntriesJava" value="false" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -600,35 +607,37 @@
       <changelist id="80f1bfb2-9343-4574-9f71-60edc316ac54" name="Default" comment="" />
       <created>1440464128544</created>
       <updated>1440464128544</updated>
-      <workItem from="1440776895874" duration="1342000" />
+      <workItem from="1440776895874" duration="1486000" />
+      <workItem from="1440837943474" duration="18988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1342000" />
+    <option name="totallyTimeSpent" value="20474000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1374" y="-8" width="1320" height="784" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298887" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298887" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287879" sideWeight="0.51277953" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287879" sideWeight="0.51277953" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282989" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3318182" sideWeight="0.51277953" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3327869" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.399361" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32842582" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3258786" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48722044" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14626391" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3272933" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18600954" sideWeight="0.6741214" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3258786" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50339365" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
@@ -636,9 +645,8 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50339365" sideWeight="0.5" order="14" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33408833" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -713,44 +721,8 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/layout/skill_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/treasure_countainer_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/hit.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/mui.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/life.png">
       <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/achievement_list_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
@@ -759,71 +731,115 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/main_gameview.xml">
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/os/Handler.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="513" selection-end="513" vertical-scroll-proportion="-4.94">
-          <folding>
-            <element signature="tag#LinearLayout#1;tag#LinearLayout#0;tag#RelativeLayout#0;tag#RelativeLayout#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Hero.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="0" selection-start="1711" selection-end="1711" vertical-scroll-proportion="0.0">
+        <state line="47" column="25" selection-start="2029" selection-end="2029" vertical-scroll-proportion="0.3327645">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_main_menu.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/java/util/Random.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="0" selection-start="894" selection-end="894" vertical-scroll-proportion="0.80479455">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/main_gameview.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="375" column="62" selection-start="18191" selection-end="18191" vertical-scroll-proportion="0.82222223">
+          <folding>
+            <element signature="e#8102#8120#0" expanded="true" />
+            <element signature="e#9066#9084#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/gavin/Sword.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="78" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Maze.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="150" selection-end="150" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Monster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Skill.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="54" selection-start="1568" selection-end="1568" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Achievement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="12" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0">
+        <state line="14" column="5" selection-start="386" selection-end="392" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/gavin/Armor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="19" selection-start="206" selection-end="206" vertical-scroll-proportion="0.46341464">
+        <state line="7" column="19" selection-start="206" selection-end="206" vertical-scroll-proportion="0.17666666">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/achievement_list_item.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="11" selection-start="521" selection-end="521" vertical-scroll-proportion="0.42318058">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Achievement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="27" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1763#1797#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="535" column="25" selection-start="19153" selection-end="19153" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6921#7237#0" expanded="true" />
+            <element signature="e#7217#7218#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Monster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="22" selection-start="108" selection-end="108" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Hero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="16" selection-start="1307" selection-end="1307" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Skill.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="120" column="40" selection-start="3082" selection-end="3082" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/gavin/Maze.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="21" selection-start="1325" selection-end="1325" vertical-scroll-proportion="0.5808081">
+          <folding>
+            <element signature="e#381#389#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
