@@ -120,19 +120,18 @@ public class Skill {
     }
     public Collection<? extends String> release(Hero hero, Monster... monsters) {
         List<String> msg = new ArrayList<String>();
-        msg.add(hero.getName() + "使用了" + getName());
         int atk = 0;
         switch (id) {
             case 1:
                 atk = hero.getAttackValue() * Math.round(getHarmAdditionValue());
                 monsters[0].addHp(-atk);
-                msg.add(hero.getName() + "攻击了" + monsters[0].getName() + "，造成了" + atk + "点伤害。");
+                msg.add(hero.getName() + "使用了技能"+name+"，对" + monsters[0].getName() + "，造成了" + atk + "点伤害。");
                 break;
             case 2:
                 atk = hero.getAttackValue() * Math.round(getHarmAdditionValue());
                 for (Monster monster : monsters) {
                     monster.addHp(-atk);
-                    msg.add(hero.getName() + "攻击了" + monster.getName() + "，造成了" + atk + "点伤害。");
+                    msg.add(hero.getName() + "使用了技能" + name + "，对" + monster.getName() + "，造成了" + atk + "点伤害。");
                 }
                 break;
             case 3:
@@ -142,7 +141,7 @@ public class Skill {
                 } else {
                     hero.addHp(v);
                 }
-                msg.add(hero.getName() + "恢复了" + v + "点HP");
+                msg.add(hero.getName() + "使用了技能"+name+"，恢复了" + v + "点HP");
         }
         return msg;
     }
