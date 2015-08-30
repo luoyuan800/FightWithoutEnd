@@ -10,12 +10,6 @@
     <file url="file://$PROJECT_DIR$/src/cn/gavin/Sword.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/cn/gavin/activity/MainGameActivity.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/cn/gavin/activity/MainMenuActivity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/FightDataInfoController.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/controller/ProbabilityEventController.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/domain/FightOneKickData.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/domain/FightOneturnData.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/domain/Hero.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/com/boredream/fightwithoutend/test/Test.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

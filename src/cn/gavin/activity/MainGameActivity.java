@@ -19,6 +19,7 @@ import cn.gavin.*;
 
 import java.io.*;
 import java.util.List;
+import java.util.Random;
 
 public class MainGameActivity extends Activity implements OnClickListener, OnItemClickListener {
     private static final String TAG = "MainGameActivity";
@@ -188,6 +189,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        save();
         gameThreadRunning = false;
     }
 
@@ -204,6 +206,24 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         return super.onKeyDown(keyCode, event);
     }
 
+    private void reset(){
+        Random random = new Random();
+        heroN.setArmor(Armor.破布);
+        heroN.setSword(Sword.木剑);
+        heroN.setMaxMazeLev(1);
+        heroN.setAgility(random.nextInt(5));
+        heroN.setPoint(0);
+        heroN.setStrength(random.nextInt(5));
+        heroN.setPower(random.nextInt(5));
+        heroN.setArmorLev(0);
+        heroN.setSwordLev(0);
+        heroN.setMaterial(0);
+        maze.setLevel(1);
+        heroN.setDefenseValue(10);
+        heroN.setHp(20);
+        heroN.setUpperHp(20);
+        heroN.setAttackValue(10);
+    }
     /**
      * 弹出退出程序提示框
      */
@@ -356,6 +376,10 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     public void onClick(View v) {
         Log.i(TAG, "onClick() -- " + v.getId() + " -- 被点击了");
         switch (v.getId()) {
+            case R.id.reset_button:
+                reset();
+                handler.sendEmptyMessage(0);
+                break;
             case R.id.pause_button:
                 handler.sendEmptyMessage(1);
                 break;
