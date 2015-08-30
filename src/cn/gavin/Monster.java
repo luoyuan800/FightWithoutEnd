@@ -7,10 +7,10 @@ import java.util.Random;
  */
 public class Monster {
     private final static String[] firstNames = {"普通", "怪异", "神奇"};
-    private final static int[] firstAdditionHP = {5, 25, 1000};
-    private final static int[] firstAdditionAtk = {5, 25, 800};
+    private final static int[] firstAdditionHP = {15, 25, 1000};
+    private final static int[] firstAdditionAtk = {3, 25, 800};
     private final static String[] secondNames = {"小", "中", "大"};
-    private final static int[] secondAdditionHP = {5, 25, 100};
+    private final static int[] secondAdditionHP = {15, 25, 100};
     private final static int[] secondAdditionAtk = {5, 25, 100};
     private final static String[] lastNames = {"猪", "老鼠", "龙"};
     private final static int[] baseHP = {15, 55, 1000};
@@ -35,7 +35,7 @@ public class Monster {
         int second = random.nextInt(secondNames.length);
         int last = random.nextInt(lastNames.length);
         hp = baseHP[last] + firstAdditionHP[first] + secondAdditionHP[second];
-        atk = baseAtk[last] = firstAdditionAtk[first] = secondAdditionAtk[second];
+        atk = baseAtk[last] + firstAdditionAtk[first] = secondAdditionAtk[second];
         firstName = firstNames[first];
         secondName = secondNames[second];
         lastName = lastNames[last];
