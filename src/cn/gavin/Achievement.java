@@ -9,6 +9,7 @@ import java.util.List;
  * Created by gluo on 8/28/2015.
  */
 public enum Achievement {
+    reBird("重生", "游戏中重置过一次", 0, 0, 0, 0),
     click10000("点击中手", "点击次数达到10000次", 0, 0, 0, 2),
     click50000("点击高手", "点击次数达到50000次", 0, 0, 0, 4),
     click100000("点击达人", "点击次数达到100000次", 0, 0, 0, 6),

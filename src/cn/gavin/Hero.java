@@ -54,18 +54,23 @@ public class Hero {
     }
 
     public void addHp(int hp) {
-        this.hp += hp;
+        if(this.hp + hp < 0){
+            this.hp = 0;
+        }
+        if(this.hp < Integer.MAX_VALUE - hp - 100) {
+            this.hp += hp;
+        }
     }
 
     public int getBaseAttackValue() {
         return attackValue;
     }
 
-    public int getUpperAtk(){
+    public int getUpperAtk() {
         return attackValue + sword.getBase() + swordLev;
     }
 
-    public int getUpperDef(){
+    public int getUpperDef() {
         return defenseValue + armorLev + armor.getBase();
     }
 
@@ -82,7 +87,11 @@ public class Hero {
     }
 
     public int getDefenseValue() {
-        return defenseValue + random.nextInt(armor.getBase()) + random.nextInt(armorLev + 1);
+        int defend = defenseValue + random.nextInt(armor.getBase()) + random.nextInt(armorLev * 2 + 1);
+        if(random.nextInt(100) > 96){
+            defend *= 1.5;
+        }
+        return defend;
     }
 
     public void addDefenseValue(int defenseValue) {
@@ -161,7 +170,8 @@ public class Hero {
     }
 
     public void addMaterial(int material) {
-        this.material += material;
+        if (material < Integer.MAX_VALUE - material - 1000)
+            this.material += material;
     }
 
     public int getPoint() {
@@ -169,7 +179,7 @@ public class Hero {
     }
 
     public void addPoint(int point) {
-        if (this.point < Integer.MAX_VALUE - point)
+        if (this.point < Integer.MAX_VALUE - point - 5000)
             this.point += point;
     }
 
@@ -178,16 +188,16 @@ public class Hero {
     }
 
     public void addStrength() {
-        if (point != 0 && strength < Integer.MAX_VALUE - 5) {
+        if (point != 0 && strength < Integer.MAX_VALUE - 500) {
             point--;
             strength++;
-            if (attackValue < Integer.MAX_VALUE - ATR_RISE)
+            if (attackValue < Integer.MAX_VALUE - ATR_RISE - 500)
                 attackValue += ATR_RISE;
         }
     }
 
     public void addStrength(int str) {
-        if (strength < Integer.MAX_VALUE - strength) {
+        if (strength < Integer.MAX_VALUE - strength - 100) {
             strength += str;
             if (attackValue < Integer.MAX_VALUE - ATR_RISE * str)
                 attackValue += ATR_RISE * str;
@@ -199,7 +209,7 @@ public class Hero {
     }
 
     public void addLife() {
-        if (point != 0 && power < Integer.MAX_VALUE - 5) {
+        if (point != 0 && power < Integer.MAX_VALUE - 500) {
             point--;
             power++;
             if (upperHp < Integer.MAX_VALUE - MAX_HP_RISE) {
@@ -210,7 +220,7 @@ public class Hero {
     }
 
     public void addLife(int life) {
-        if (power < Integer.MAX_VALUE - life) {
+        if (power < Integer.MAX_VALUE - life - 100) {
             power += life;
             if (upperHp < Integer.MAX_VALUE - MAX_HP_RISE * life) {
                 hp += MAX_HP_RISE * life;
@@ -224,7 +234,7 @@ public class Hero {
     }
 
     public void addAgility() {
-        if (point != 0 && agility < Integer.MAX_VALUE - 5) {
+        if (point != 0 && agility < Integer.MAX_VALUE - 500) {
             point--;
             agility++;
             if (defenseValue < Integer.MAX_VALUE - DEF_RISE)
@@ -233,7 +243,7 @@ public class Hero {
     }
 
     public void addAgility(int agi) {
-        if (point != 0 && agility < Integer.MAX_VALUE - agi) {
+        if (point != 0 && agility < Integer.MAX_VALUE - agi -100) {
             agility += agi;
             if (defenseValue < Integer.MAX_VALUE - DEF_RISE * agi)
                 defenseValue += DEF_RISE * agi;

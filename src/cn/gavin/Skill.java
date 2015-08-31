@@ -118,7 +118,7 @@ public class Skill {
         }
         return result;
     }
-    public Collection<? extends String> release(Hero hero, Monster... monsters) {
+    public List<String> release(Hero hero, Monster... monsters) {
         List<String> msg = new ArrayList<String>();
         int atk = 0;
         switch (id) {

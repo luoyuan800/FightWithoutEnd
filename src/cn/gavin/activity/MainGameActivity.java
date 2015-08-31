@@ -13,13 +13,31 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.*;
+import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import cn.gavin.*;
+import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import cn.gavin.Achievement;
+import cn.gavin.Armor;
+import cn.gavin.Hero;
+import cn.gavin.Maze;
+import cn.gavin.R;
+import cn.gavin.Sword;
 
 public class MainGameActivity extends Activity implements OnClickListener, OnItemClickListener {
     private static final String TAG = "MainGameActivity";
@@ -57,17 +75,25 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private Button heroPic;
     private Button pauseButton;
     private Button achievementButton;
+    private Button resetButton;
+    private Button buyButton;
 
     private boolean pause;
     private AchievementAdapter adapter;
     private boolean gameThreadRunning;
-    // 是否正在进行一轮战斗,是 正在进行;否 战斗已经结束
-    private boolean isOneTurnFinghting = false;
-
+    private final MainGameActivity context = this;
     private GameThread gameThread;
 
-    private int oneTurnIndex = 0;
-    private List<String> message;
+    private LinkedList<String> messages = new LinkedList<String>();
+
+    public void addMessage(String msg) {
+        messages.add(msg);
+    }
+
+    public void addMessages(List<String> msgs) {
+        this.messages.addAll(msgs);
+    }
+
     private Handler handler = new Handler() {
 
         @Override
@@ -91,53 +117,29 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                     heroPic.setBackgroundResource(R.drawable.h_2);
                     break;
                 case 10:
-                    if (!isOneTurnFinghting) {
-                        //monster = getMonster();
-
-                        TextView metMonInfo = new TextView(MainGameActivity.this);
-                        metMonInfo.setTextSize(fightInfoSize);
-                        mainInfoPlatform.addView(metMonInfo);
-                        message = maze.move();
-                        if (message.size() <= 4) {
+                    if (!messages.isEmpty()) {
+                        TextView oneKickInfo = new TextView(MainGameActivity.this);
+                        // 将一次信息数据显示到页面中
+                        oneKickInfo.setText(messages.poll());
+                        mainInfoPlatform.addView(oneKickInfo);
+                        scrollToBottom(mainInfoSv, mainInfoPlatform);
+                        if (messages.size() <= 4) {
                             heroPic.setBackgroundResource(R.drawable.h_3);
                         } else {
                             heroPic.setBackgroundResource(R.drawable.h_1);
                         }
-//                        runOneTurn = FightDataInfoController.runOneTurn(monster);
+                    } else if (!maze.isMoving()) {
+//                        TextView metMonInfo = new TextView(MainGameActivity.this);
+//                        metMonInfo.setTextSize(fightInfoSize);
+//                        mainInfoPlatform.addView(metMonInfo);
+                        maze.move(context);
 
-                        isOneTurnFinghting = true;
-
-                    } else {
-                        // 如果一轮战斗信息没有显示完(一轮战斗尚未结束)
-                        if (oneTurnIndex < message.size()) {
-                            TextView oneKickInfo = new TextView(MainGameActivity.this);
-                            // 获取本轮战斗的一次击打信息
-//                            FightOneKickData fightOneKickData = runOneTurn.oneKickData
-//                                    .get(oneTurnIndex);
-                            // 将一次击打信息数据显示到页面中
-                            oneKickInfo.setText(message.get(oneTurnIndex));
-                            mainInfoPlatform.addView(oneKickInfo);
-                            /*if (FightOneKickData.M2H == fightOneKickData.getHarmType()) {
-                                mainContriHp.setText(fightOneKickData.getHeroCurrentHp() + "");
-                            }*/
-                            // 遍历到下一次击打
-                            oneTurnIndex++;
-                        } else {
-                            // 一轮战斗结束了
-
-                            TextView fightEndSeparatorInfo = new TextView(MainGameActivity.this);
-                            fightEndSeparatorInfo.setText("--------------------");
-                            mainInfoPlatform.addView(fightEndSeparatorInfo);
-                            oneTurnIndex = 0;
-                            isOneTurnFinghting = false;
-                        }
                     }
                     if (mainInfoPlatform.getChildCount() > fightInfoTotalCount) {
                         mainInfoPlatform.removeViewAt(0);
                     }
 
                     // mainInfoSv.fullScroll(ScrollView.FOCUS_DOWN);
-                    scrollToBottom(mainInfoSv, mainInfoPlatform);
                     break;
             }
 
@@ -206,7 +208,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         return super.onKeyDown(keyCode, event);
     }
 
-    private void reset(){
+    private void reset() {
         Random random = new Random();
         heroN.setArmor(Armor.破布);
         heroN.setSword(Sword.木剑);
@@ -223,7 +225,9 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         heroN.setHp(20);
         heroN.setUpperHp(20);
         heroN.setAttackValue(10);
+        Achievement.reBird.enable(heroN);
     }
+
     /**
      * 弹出退出程序提示框
      */
@@ -277,6 +281,34 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         dialog.show();
     }
 
+    private void showNameDialog() {
+        AlertDialog dialog = new Builder(this).create();
+        dialog.setTitle("给勇者取个名字");
+        final EditText tv = new EditText(this);
+        tv.setText(heroN.getName());
+        dialog.setView(tv);
+        dialog.setButton(DialogInterface.BUTTON_POSITIVE, "确定",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        heroN.setName(tv.getText().toString().replaceAll("_", " "));
+                        dialog.dismiss();
+                    }
+
+                });
+        dialog.setButton(DialogInterface.BUTTON_NEGATIVE, "取消",
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+
+                });
+        dialog.show();
+    }
+
     private void initGameData() {
         // 英雄
         if (!load()) {
@@ -288,6 +320,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         mainInfoPlatform = (LinearLayout) findViewById(R.id.main_info_ll);
         // ---- ---- 标题（人物名称 | 最深迷宫数)
         itembarContri = (TextView) findViewById(R.id.character_itembar_contribute);
+        itembarContri.setOnClickListener(this);
         // ---- ---- 属性
         mainContriHp = (TextView) findViewById(R.id.main_contri_hp);
         mainContriAtt = (TextView) findViewById(R.id.main_contri_att);
@@ -316,11 +349,15 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         achievementButton = (Button) findViewById(R.id.achieve_button);
         achievementButton.setOnClickListener(this);
         clickCount = (TextView) findViewById(R.id.hero_pic_click_count);
-        clickCount.setText("点击\n" + heroN.getClick());
+        resetButton = (Button) findViewById(R.id.reset_button);
+        resetButton.setOnClickListener(this);
+        buyButton = (Button) findViewById(R.id.buy_button);
+        buyButton.setOnClickListener(this);
         refresh();
     }
 
     private void refresh() {
+        clickCount.setText("点击\n" + heroN.getClick());
         mainContriHp.setText(heroN.getHp() + "");
         mainContriAtt.setText(heroN.getUpperAtk() + "");
         mainContriDef.setText(heroN.getUpperDef() + "");
@@ -365,7 +402,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                 if (!pause) {
                     saveTime += refreshInfoSpeed;
                     handler.sendEmptyMessage(10);
-                    if (saveTime >= refreshInfoSpeed * 60)
+                    if (saveTime >= refreshInfoSpeed * 200)
                         save();
                 }
             }
@@ -376,6 +413,9 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     public void onClick(View v) {
         Log.i(TAG, "onClick() -- " + v.getId() + " -- 被点击了");
         switch (v.getId()) {
+            case R.id.character_itembar_contribute:
+                showNameDialog();
+                break;
             case R.id.reset_button:
                 reset();
                 handler.sendEmptyMessage(0);
@@ -539,7 +579,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
             }
             sb.append("_");
             sb.append(maze.getLev());
-            fos.write(sb.toString().getBytes());
+            fos.write(sb.toString().getBytes("UTF-8"));
             fos.flush();
             fos.close();
         } catch (FileNotFoundException e) {
@@ -552,16 +592,16 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
     private boolean load() {
         try {
             FileInputStream fis = openFileInput("yzcmg.ave");
-            byte[] b = new byte[1024];
+            byte[] b = new byte[1];
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             while (fis.read(b) != -1) {
                 baos.write(b, 0, b.length);
             }
             baos.close();
             fis.close();
-            String save = baos.toString();
+            String save = baos.toString("UTF-8");
             String[] atts = save.split("_");
-            if (atts.length == 19) {
+            if (atts.length >= 19) {
                 heroN = new Hero(atts[0]);
                 heroN.setHp(Integer.parseInt(atts[1]));
                 heroN.setUpperHp(Integer.parseInt(atts[2]));
@@ -581,14 +621,19 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                 heroN.setArmor(Armor.valueOf(atts[11]));
                 maze = new Maze(heroN);
                 maze.setLevel(Integer.parseInt(atts[18]));
+                if(maze.getLev() > heroN.getMaxMazeLev()){
+                    maze.setLevel(heroN.getMaxMazeLev());
+                }
                 for (int i = 0; i < atts[17].length() && i < Achievement.values().length; i++) {
-                    int enable = (int) (atts[17].charAt(i));
+                    int enable = Integer.parseInt(atts[17].charAt(i) + "");
                     if (enable == 1) {
                         Achievement.values()[i].enable();
                     }
                 }
+                return true;
+            } else {
+                return false;
             }
-            return true;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
