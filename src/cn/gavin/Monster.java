@@ -25,7 +25,8 @@ public class Monster {
 
     public static Monster getBoss(Maze maze, Hero hero) {
         Random random = new Random();
-        Monster monster = new Monster("第" + maze.getLev() + "层", "守护", "者", hero.getUpperHp() * (random.nextInt(maze.getLev() + 1) + 1), random.nextInt(hero.getHp() + maze.getLev()));
+        Monster monster = new Monster("第" + maze.getLev() + "层", "守护", "者", hero.getUpperHp() * (random.nextInt(maze.getLev() + 1) + 1), random.nextInt(hero.getAttackValue() + maze.getLev()));
+        monster.material = random.nextInt(maze.getLev() + monster.atk + 1);
         return monster;
     }
 

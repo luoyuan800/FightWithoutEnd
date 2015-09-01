@@ -44,7 +44,11 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
 
     // 战斗刷新速度
     private long refreshInfoSpeed = 500;
-
+public long getRefreshInfoSpeed(){
+    return refreshInfoSpeed;
+}
+    //界面刷新速度
+    private long refresh = 50;
     // 战斗信息
     private ScrollView mainInfoSv;
     private LinearLayout mainInfoPlatform;
@@ -86,12 +90,21 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
 
     private LinkedList<String> messages = new LinkedList<String>();
 
+    public boolean isGameThreadRunning() {
+        return gameThreadRunning;
+    }
+public boolean isPause(){
+    return pause;
+}
+
     public void addMessage(String msg) {
         messages.add(msg);
+        handler.sendEmptyMessage(10);
     }
 
     public void addMessages(List<String> msgs) {
         this.messages.addAll(msgs);
+        handler.sendEmptyMessage(10);
     }
 
     private Handler handler = new Handler() {
@@ -123,17 +136,11 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                         oneKickInfo.setText(messages.poll());
                         mainInfoPlatform.addView(oneKickInfo);
                         scrollToBottom(mainInfoSv, mainInfoPlatform);
-                        if (messages.size() <= 4) {
+                        if (messages.size() >= 2) {
                             heroPic.setBackgroundResource(R.drawable.h_3);
                         } else {
                             heroPic.setBackgroundResource(R.drawable.h_1);
                         }
-                    } else if (!maze.isMoving()) {
-//                        TextView metMonInfo = new TextView(MainGameActivity.this);
-//                        metMonInfo.setTextSize(fightInfoSize);
-//                        mainInfoPlatform.addView(metMonInfo);
-                        maze.move(context);
-
                     }
                     if (mainInfoPlatform.getChildCount() > fightInfoTotalCount) {
                         mainInfoPlatform.removeViewAt(0);
@@ -356,7 +363,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
         refresh();
     }
 
-    private void refresh() {
+    private synchronized void refresh() {
         clickCount.setText("点击\n" + heroN.getClick());
         mainContriHp.setText(heroN.getHp() + "");
         mainContriAtt.setText(heroN.getUpperAtk() + "");
@@ -393,6 +400,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
 
         @Override
         public void run() {
+            new MoveThread().start();
             while (gameThreadRunning) {
                 try {
                     Thread.sleep(refreshInfoSpeed);
@@ -407,6 +415,12 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                 }
             }
         }
+    }
+
+    private class MoveThread extends  Thread{
+       public void run(){
+           maze.move(context);
+       }
     }
 
     @Override
@@ -621,7 +635,7 @@ public class MainGameActivity extends Activity implements OnClickListener, OnIte
                 heroN.setArmor(Armor.valueOf(atts[11]));
                 maze = new Maze(heroN);
                 maze.setLevel(Integer.parseInt(atts[18]));
-                if(maze.getLev() > heroN.getMaxMazeLev()){
+                if (maze.getLev() > heroN.getMaxMazeLev()) {
                     maze.setLevel(heroN.getMaxMazeLev());
                 }
                 for (int i = 0; i < atts[17].length() && i < Achievement.values().length; i++) {

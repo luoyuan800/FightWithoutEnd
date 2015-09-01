@@ -54,10 +54,13 @@ public class Hero {
     }
 
     public void addHp(int hp) {
-        if(this.hp + hp < 0){
-            this.hp = 0;
-        }
-        if(this.hp < Integer.MAX_VALUE - hp - 100) {
+        if (hp < 0) {
+            if (this.hp + hp < 0) {
+                this.hp = 0;
+            } else {
+                this.hp += hp;
+            }
+        } else if (this.hp < (Integer.MAX_VALUE - hp - 100)) {
             this.hp += hp;
         }
     }
@@ -88,7 +91,7 @@ public class Hero {
 
     public int getDefenseValue() {
         int defend = defenseValue + random.nextInt(armor.getBase()) + random.nextInt(armorLev * 2 + 1);
-        if(random.nextInt(100) > 96){
+        if (random.nextInt(100) > 96) {
             defend *= 1.5;
         }
         return defend;
@@ -170,8 +173,9 @@ public class Hero {
     }
 
     public void addMaterial(int material) {
-        if (material < Integer.MAX_VALUE - material - 1000)
+        if (this.material < 0 || this.material < (Integer.MAX_VALUE - material - 1000))
             this.material += material;
+        if (this.material < 0) this.material = 0;
     }
 
     public int getPoint() {
@@ -179,8 +183,9 @@ public class Hero {
     }
 
     public void addPoint(int point) {
-        if (this.point < Integer.MAX_VALUE - point - 5000)
+        if (point < 0 || this.point < (Integer.MAX_VALUE - point - 5000))
             this.point += point;
+        if (this.point < 0) this.point = 0;
     }
 
     public int getStrength() {
@@ -188,20 +193,22 @@ public class Hero {
     }
 
     public void addStrength() {
-        if (point != 0 && strength < Integer.MAX_VALUE - 500) {
+        if (point != 0 && strength < (Integer.MAX_VALUE - 500)) {
             point--;
             strength++;
-            if (attackValue < Integer.MAX_VALUE - ATR_RISE - 500)
+            if (attackValue < (Integer.MAX_VALUE - ATR_RISE - 500))
                 attackValue += ATR_RISE;
         }
     }
 
     public void addStrength(int str) {
-        if (strength < Integer.MAX_VALUE - strength - 100) {
+        if (str < 0 || strength < (Integer.MAX_VALUE - strength - 100)) {
             strength += str;
-            if (attackValue < Integer.MAX_VALUE - ATR_RISE * str)
+            if (str < 0 || attackValue < (Integer.MAX_VALUE - ATR_RISE * str))
                 attackValue += ATR_RISE * str;
         }
+        if (strength < 0) strength = 0;
+        if (attackValue < 0) attackValue = 0;
     }
 
     public int getPower() {
@@ -209,10 +216,10 @@ public class Hero {
     }
 
     public void addLife() {
-        if (point != 0 && power < Integer.MAX_VALUE - 500) {
+        if (point != 0 && power < (Integer.MAX_VALUE - 500)) {
             point--;
             power++;
-            if (upperHp < Integer.MAX_VALUE - MAX_HP_RISE) {
+            if (upperHp < (Integer.MAX_VALUE - MAX_HP_RISE)) {
                 hp += MAX_HP_RISE;
                 upperHp += MAX_HP_RISE;
             }
@@ -220,13 +227,16 @@ public class Hero {
     }
 
     public void addLife(int life) {
-        if (power < Integer.MAX_VALUE - life - 100) {
+        if (life < 0 || power < (Integer.MAX_VALUE - life - 100)) {
             power += life;
-            if (upperHp < Integer.MAX_VALUE - MAX_HP_RISE * life) {
+            if (life < 0 || upperHp < (Integer.MAX_VALUE - MAX_HP_RISE * life)) {
                 hp += MAX_HP_RISE * life;
                 upperHp += MAX_HP_RISE * life;
             }
         }
+        if (power < 0) power = 0;
+        if (hp < 0) hp = 0;
+        if (upperHp < 0) upperHp = 0;
     }
 
     public int getAgility() {
@@ -234,20 +244,22 @@ public class Hero {
     }
 
     public void addAgility() {
-        if (point != 0 && agility < Integer.MAX_VALUE - 500) {
+        if (point != 0 && (agility < Integer.MAX_VALUE - 500)) {
             point--;
             agility++;
-            if (defenseValue < Integer.MAX_VALUE - DEF_RISE)
+            if (defenseValue < (Integer.MAX_VALUE - DEF_RISE))
                 defenseValue += DEF_RISE;
         }
     }
 
     public void addAgility(int agi) {
-        if (point != 0 && agility < Integer.MAX_VALUE - agi -100) {
+        if (agi < 0 || agility < (Integer.MAX_VALUE - agi - 100)) {
             agility += agi;
-            if (defenseValue < Integer.MAX_VALUE - DEF_RISE * agi)
+            if (agi < 0 || defenseValue < (Integer.MAX_VALUE - DEF_RISE * agi))
                 defenseValue += DEF_RISE * agi;
         }
+        if (agility < 0) agility = 0;
+        if (defenseValue < 0) defenseValue = 0;
     }
 
     public void restore() {
@@ -277,26 +289,27 @@ public class Hero {
     }
 
     public void click() {
-        if (this.click % 1000 == 0) {
-            point += random.nextInt(15);
+        if (click < Integer.MAX_VALUE - 10) {
+            if (this.click % 1000 == 0) {
+                point += random.nextInt(15);
+            }
+            this.material += clickAward;
+            this.click++;
+            switch (click) {
+                case 100:
+                    Achievement.click100.enable(this);
+                    break;
+                case 10000:
+                    Achievement.click10000.enable(this);
+                    break;
+                case 50000:
+                    Achievement.click50000.enable(this);
+                    break;
+                case 100000:
+                    Achievement.click100000.enable(this);
+                    break;
+            }
         }
-        this.material += clickAward;
-        this.click++;
-        switch (click) {
-            case 100:
-                Achievement.click100.enable(this);
-                break;
-            case 10000:
-                Achievement.click10000.enable(this);
-                break;
-            case 50000:
-                Achievement.click50000.enable(this);
-                break;
-            case 100000:
-                Achievement.click100000.enable(this);
-                break;
-        }
-
     }
 
     public Skill useSkill() {
